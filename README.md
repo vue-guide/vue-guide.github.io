@@ -1,10 +1,30 @@
-## 간단한 사용법
+## Quick Start
 
-1. 클론
-2. git fetch --all
-3. git checkout writing
-4. npm install
-5. source/_posts/"해당 문서 올리기"
-6. 최상위 폴더에서 npm run deploy
-7. 끗
+### 클론
+
+```bash
+git clone https://github.com/vue-guide/vue-guide.github.io.git
+```
+
+### 브랜치 변경(writing)
+
+```bash
+git checkout -b writing
+```
+
+### 설치
+
+```bash
+npm install
+```
+
+### 문서 업로드
+
+`/source/_posts` 경로에 마크다운(`.md`) 파일 업로드
+
+### Deploy 명령어 실행
+
+```bash
+npm run deploy
+```
 
