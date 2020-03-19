@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <title>반응형에 대해 깊이 알아보기 | Vue Search</title>
+    
+    
+        <meta name="keywords" content="Vue.js">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="이제 조금 더 깊게 알아볼 차례입니다. Vue의 가장 두드러진 특징 중 하나는 눈에 잘 띄지 않는 반응형 시스템입니다. 모델은 단순한 JavaScript 객체입니다. 수정하면 화면이 갱신됩니다. 스테이트 관리를 간단하고 직관적으로 만들어주지만, 몇 가지 흔한 함정을 피하려면 어떻게 작동하는지 이해하는 것도 중요합니다. 이 섹션에서는 Vue의 반응형 시스템의">
+<meta name="keywords" content="Vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="반응형에 대해 깊이 알아보기">
+<meta property="og:url" content="https://vue-guide.github.io/wiki/vue/reactivity/index.html">
+<meta property="og:site_name" content="Vue Search">
+<meta property="og:description" content="이제 조금 더 깊게 알아볼 차례입니다. Vue의 가장 두드러진 특징 중 하나는 눈에 잘 띄지 않는 반응형 시스템입니다. 모델은 단순한 JavaScript 객체입니다. 수정하면 화면이 갱신됩니다. 스테이트 관리를 간단하고 직관적으로 만들어주지만, 몇 가지 흔한 함정을 피하려면 어떻게 작동하는지 이해하는 것도 중요합니다. 이 섹션에서는 Vue의 반응형 시스템의">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://vue-guide.github.io/images/data.png">
+<meta property="og:updated_time" content="2020-03-19T01:48:23.928Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="반응형에 대해 깊이 알아보기">
+<meta name="twitter:description" content="이제 조금 더 깊게 알아볼 차례입니다. Vue의 가장 두드러진 특징 중 하나는 눈에 잘 띄지 않는 반응형 시스템입니다. 모델은 단순한 JavaScript 객체입니다. 수정하면 화면이 갱신됩니다. 스테이트 관리를 간단하고 직관적으로 만들어주지만, 몇 가지 흔한 함정을 피하려면 어떻게 작동하는지 이해하는 것도 중요합니다. 이 섹션에서는 Vue의 반응형 시스템의">
+<meta name="twitter:image" content="https://vue-guide.github.io/images/data.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="Vue Search" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+</head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Vue Search</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue-good-table
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vue-good-table/README/">Getting Started</a></li>  <li class="file"><a href="/wiki/vue-good-table/configuration/">Table Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/table-events/">Table Events</a></li>  <li class="file"><a href="/wiki/vue-good-table/search-options/">Search Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/sort-options/">Sort Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/pagination-options/">Pagination Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/column-options/">Column Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/column-filter-options/">Column Filter Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/advanced/">Customizations</a></li>  <li class="file"><a href="/wiki/vue-good-table/checkbox-table/">Checkbox Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/grouped-table/">Grouped Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/remote-workflow/">Server Side Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/style-configuration/">Themes</a></li>  <li class="file"><a href="/wiki/vue-good-table/style-classes/">Style Classes</a></li>  <li class="file"><a href="/wiki/vue-good-table/sass/">Sass</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vue/index/">시작하기</a></li>  <li class="file"><a href="/wiki/vue/installation/">설치방법</a></li>  <li class="file"><a href="/wiki/vue/instance/">Vue 인스턴스</a></li>  <li class="file"><a href="/wiki/vue/syntax/">템플릿 문법</a></li>  <li class="file"><a href="/wiki/vue/computed/">computed와 watch</a></li>  <li class="file"><a href="/wiki/vue/class-and-style/">클래스와 스타일 바인딩</a></li>  <li class="file"><a href="/wiki/vue/conditional/">조건부 렌더링</a></li>  <li class="file"><a href="/wiki/vue/list/">리스트 렌더링</a></li>  <li class="file"><a href="/wiki/vue/events/">이벤트 핸들링</a></li>  <li class="file"><a href="/wiki/vue/forms/">폼 입력 바인딩</a></li>  <li class="file"><a href="/wiki/vue/components/">컴포넌트</a></li>  <li class="file"><a href="/wiki/vue/transitions/">진입/진출 그리고 리스트 트랜지션</a></li>  <li class="file"><a href="/wiki/vue/components-registration/">컴포넌트 등록</a></li>  <li class="file"><a href="/wiki/vue/transitioning-state/">상태 트랜지션</a></li>  <li class="file"><a href="/wiki/vue/components-props/">Props</a></li>  <li class="file"><a href="/wiki/vue/components-custom-events/">커스텀 이벤트</a></li>  <li class="file"><a href="/wiki/vue/components-slots/">슬롯(Slots)</a></li>  <li class="file"><a href="/wiki/vue/components-edge-cases/">Handling Edge Cases</a></li>  <li class="file"><a href="/wiki/vue/style-guide/">Style Guide</a></li>  <li class="file"><a href="/wiki/vue/comparison/">다른 프레임워크와의 비교</a></li>  <li class="file"><a href="/wiki/vue/mixins/">믹스인</a></li>  <li class="file"><a href="/wiki/vue/custom-directive/">사용자 지정 디렉티브</a></li>  <li class="file"><a href="/wiki/vue/render-function/">Render Functions & JSX</a></li>  <li class="file"><a href="/wiki/vue/plugins/">플러그인</a></li>  <li class="file"><a href="/wiki/vue/filters/">필터</a></li>  <li class="file"><a href="/wiki/vue/single-file-components/">싱글 파일 컴포넌트</a></li>  <li class="file"><a href="/wiki/vue/typescript/">TypeScript 지원</a></li>  <li class="file"><a href="/wiki/vue/unit-testing/">단위 테스팅</a></li>  <li class="file"><a href="/wiki/vue/deployment/">프로덕션 배포 팁</a></li>  <li class="file"><a href="/wiki/vue/routing/">라우팅</a></li>  <li class="file"><a href="/wiki/vue/state-management/">상태 관리</a></li>  <li class="file"><a href="/wiki/vue/ssr/">서버사이드 렌더링</a></li>  <li class="file"><a href="/wiki/vue/security/">Security</a></li>  <li class="file active"><a href="/wiki/vue/reactivity/">반응형에 대해 깊이 알아보기</a></li>  <li class="file"><a href="/wiki/vue/migration/">Vue 1.x에서 마이그레이션</a></li>  <li class="file"><a href="/wiki/vue/migration-vue-router/">Vue Router 0.7.x으로 부터 마이그레이션</a></li>  <li class="file"><a href="/wiki/vue/migration-vuex/">Vuex 0.6.x에서 1.0로 마이그레이션</a></li>  <li class="file"><a href="/wiki/vue/team/">팀 구성원 만나기</a></li>  <li class="file"><a href="/wiki/vue/join/">Vue.js 커뮤니티에 참여하세요!</a></li>  <li class="file"><a href="/wiki/vue/components-dynamic-async/">동적 & 비동기 컴포넌트</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vuex/intro/">Vuex가 무엇인가요?</a></li>  <li class="file"><a href="/wiki/vuex/getting-started/">시작하기</a></li>  <li class="file"><a href="/wiki/vuex/hot-reload/">핫 리로딩</a></li>  <li class="file"><a href="/wiki/vuex/installation/">설치</a></li>  <li class="file"><a href="/wiki/vuex/modules/">모듈</a></li>  <li class="file"><a href="/wiki/vuex/mutations/">변이</a></li>  <li class="file"><a href="/wiki/vuex/getters/">Getters</a></li>  <li class="file"><a href="/wiki/vuex/api/">API 레퍼런스</a></li>  <li class="file"><a href="/wiki/vuex/actions/">액션</a></li>  <li class="file"><a href="/wiki/vuex/forms/">폼 핸들링</a></li>  <li class="file"><a href="/wiki/vuex/plugins/">플러그인</a></li>  <li class="file"><a href="/wiki/vuex/state/">상태</a></li>  <li class="file"><a href="/wiki/vuex/strict/">Strict 모드</a></li>  <li class="file"><a href="/wiki/vuex/structure/">애플리케이션 구조</a></li>  <li class="file"><a href="/wiki/vuex/testing/">테스팅</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-vue/reactivity" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/vue/reactivity/">
+            <time datetime="2019-06-01T10:04:47.000Z" itemprop="datePublished">2019-06-01</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/vue/reactivity.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/vue/reactivity.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/vue/reactivity.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            반응형에 대해 깊이 알아보기
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#변경-감지-경고"><span class="toc-number">1.</span> <span class="toc-text">변경 감지 경고</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#반응형-속성-선언하기"><span class="toc-number">2.</span> <span class="toc-text">반응형 속성 선언하기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#비동기-갱신-큐"><span class="toc-number">3.</span> <span class="toc-text">비동기 갱신 큐</span></a></li></ol>
+                </div>
+            
+        
+        
+            <p>이제 조금 더 깊게 알아볼 차례입니다. Vue의 가장 두드러진 특징 중 하나는 눈에 잘 띄지 않는 반응형 시스템입니다. 모델은 단순한 JavaScript 객체입니다. 수정하면 화면이 갱신됩니다. 스테이트 관리를 간단하고 직관적으로 만들어주지만, 몇 가지 흔한 함정을 피하려면 어떻게 작동하는지 이해하는 것도 중요합니다. 이 섹션에서는 Vue의 반응형 시스템의 세부사항을 다룹니다.</p>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/advanced-components/build-a-reactivity-system" target="_blank" rel="sponsored noopener" title="Vue Reactivity">Watch a video explanation on Vue Mastery</a></div>
+## 변경 내용을 추적하는 방법
+
+<p>Vue 인스턴스에 JavaScript 객체를 <code>data</code> 옵션으로 전달하면 Vue는 모든 속성에 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="noopener">Object.defineProperty</a>를 사용하여 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects#Defining_getters_and_setters" target="_blank" rel="noopener">getter/setters</a>로 변환합니다. 이는 Vue가 ES5를 사용할 수 없는 IE8 이하를 지원하지 않는 이유입니다.</p>
+<p>getter / setter 는 사용자에게는 보이지 않으나 속성에 액세스 하거나 수정할 때 Vue가 종속성 추적 및 변경 알림을 수행할 수 있습니다. 한가지 주의 사항은 변환된 데이터 객체가 기록될 때 브라우저가 getter / setter 형식을 다르게 처리하므로 친숙한 인터페이스를 사용하기 위해  <a href="https://github.com/vuejs/vue-devtools" target="_blank" rel="noopener">vue-devtools</a>를 설치하는 것이 좋습니다.</p>
+<p>모든 컴포넌트 인스턴스에는 해당 <strong>watcher</strong> 인스턴스가 있으며, 이 인스턴스는 컴포넌트가 종속적으로 렌더링되는 동안 “수정”된 모든 속성을 기록합니다. 나중에 종속적인 setter가 트리거 되면 watcher에 알리고 컴포넌트가 다시 렌더링 됩니다.</p>
+<p><img src="/images/data.png" alt="종석성 사이클"></p>
+<h2 id="변경-감지-경고"><a href="#변경-감지-경고" class="headerlink" title="변경 감지 경고"></a>변경 감지 경고</h2><p>최신 JavaScript의 한계 (그리고 <code>Object.observe</code>의 포기)로 인해 Vue는 <strong>속성의 추가 제거를 감지할 수 없습니다.</strong> Vue는 인스턴스 초기화 중에 getter / setter 변환 프로세스를 수행하기 때문에 <code>data</code> 객체에 속성이 있어야 Vue가 이를 변환하고 응답할 수 있습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    a: <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// `vm.a` 은 이제 반응적입니다.</span></span><br><span class="line"></span><br><span class="line">vm.b = <span class="number">2</span></span><br><span class="line"><span class="comment">// `vm.b` 은 이제 반응적이지 않습니다.</span></span><br></pre></td></tr></table></figure>
+
+<p>Vue는 이미 만들어진 인스턴스에 새로운 루트 수준의 반응 속성을 동적으로 추가하는 것을 허용하지 않습니다. 그러나 <code>Vue.set(object, key, value)</code> 메소드를 사용하여 중첩 된 객체에 반응성 속성을 추가 할 수 있습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.set(vm.someObject, <span class="string">'b'</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p><code>Vm.$set</code> 인스턴스 메소드를 사용할 수도 있습니다. 이 메소드는 전역 <code>Vue.set</code> 에 대한 별칭입니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$<span class="keyword">set</span>(this.someObject, 'b', 2)</span><br></pre></td></tr></table></figure>
+
+<p>때로는 예를 들어 <code>Object.assign()</code> 또는 <code>_.extend()</code>를 사용하여 기존 객체에 많은 속성을 할당 할 수 있습니다. 그러나 객체에 추가 된 새 속성은 변경 내용을 트리거하지 않습니다. 이 경우 원본 객체와 mixin 객체의 속성을 사용하여 새 객체를 만듭니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// `Object.assign(this.someObject, &#123; a: 1, b: 2 &#125;)` 대신에</span></span><br><span class="line"><span class="keyword">this</span>.someObject = <span class="built_in">Object</span>.assign(&#123;&#125;, <span class="keyword">this</span>.someObject, &#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span> &#125;)</span><br></pre></td></tr></table></figure>
+
+<p><a href="list.html#Caveats">리스트 렌더링 섹션</a>에 앞서 알아보아야 할 배열 관련 참고사항이 있습니다.</p>
+<h2 id="반응형-속성-선언하기"><a href="#반응형-속성-선언하기" class="headerlink" title="반응형 속성 선언하기"></a>반응형 속성 선언하기</h2><p>Vue는 루트 수준의 반응성 속성을 동적으로 추가 할 수 없으므로 모든 루트 수준의 반응성 데이터 속성을 빈 값으로라도 초기에 선언하여 Vue 인스턴스를 초기화해야합니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    <span class="comment">// 빈 값으로 메시지를 선언 합니다.</span></span><br><span class="line">    message: <span class="string">''</span></span><br><span class="line">  &#125;,</span><br><span class="line">  template: <span class="string">'&lt;div&gt;&#123;&#123; message &#125;&#125;&lt;/div&gt;'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 나중에 `message`를 설정합니다.</span></span><br><span class="line">vm.message = <span class="string">'Hello!'</span></span><br></pre></td></tr></table></figure>
+
+<p>data 옵션에<code>message</code>를 선언하지 않으면 Vue는 렌더 함수가 존재하지 않는 속성에 접근하려고 한다는 경고를합니다.</p>
+<p>이 제한 사항에는 기술적인 이유가 있습니다. 종속성 추적 시스템에서 엣지 케이스 클래스를 제거하고 Vue 인스턴스를 유형 검사 시스템으로 더 멋지게 만듭니다. 그러나 코드 유지 관리 측면에서도 중요한 고려 사항이 있습니다. <code>data</code> 객체는 컴포넌트 상태에 대한 스키마와 같습니다. 모든 반응 속성을 미리 선언하면 나중에 다시 방문하거나 다른 개발자가 읽을 때 구성 요소 코드를 더 쉽게 이해할 수 있습니다.</p>
+<h2 id="비동기-갱신-큐"><a href="#비동기-갱신-큐" class="headerlink" title="비동기 갱신 큐"></a>비동기 갱신 큐</h2><p>눈치채셨는지 모르겠지만, Vue는 DOM 업데이트를 <strong>비동기로 합니다</strong>. 데이터 변경이 발견 될 때마다 큐를 열고 같은 이벤트 루프에서 발생하는 모든 데이터 변경을 버퍼에 담습니다. 같은 Watcher가 여러 번 발생하면 대기열에서 한 번만 푸시됩니다. 이 버퍼링된 중복의 제거는 불필요한 계산과 DOM 조작을 피하는 데 있어 중요합니다. 그 다음, 이벤트 루프 “tick”에서 Vue는 대기열을 비우고 실제 (이미 중복 제거 된) 작업을 수행합니다. 내부적으로 Vue는 비동기 큐를 위해 네이티브 <code>Promise.then</code> 와 <code>MessageChannel</code>를 시도하고 <code>setTimeout (fn, 0)</code>으로 돌아갑니다.</p>
+<p>예를 들어,<code>vm.someData = &#39;new value&#39;</code>를 설정하면, 컴포넌트는 즉시 재 렌더링되지 않습니다. 큐가 플러시 될 때 다음 “tick” 에서 업데이트됩니다. 대개의 경우 이 작업을 신경 쓸 필요는 없지만 업데이트 후 DOM 상태에 의존하는 작업을 수행하려는 경우 까다로울 수 있습니다. Vue.js는 일반적으로 개발자가 “데이터 중심”방식으로 생각하고 DOM을 직접 만지지 않도록 권장하지만 때로는 건드려야 할 수도 있습니다. Vue.js가 데이터 변경 후 DOM 업데이트를 마칠 때까지 기다리려면 데이터가 변경된 직후에 <code>Vue.nextTick (콜백)</code>을 사용할 수 있습니다. 콜백은 DOM이 업데이트 된 후에 호출됩니다.</p>
+<p>예:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example"</span>&gt;</span>&#123;&#123; message &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#example'</span>,</span><br><span class="line">  data: &#123;</span><br><span class="line">    message: <span class="string">'123'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">vm.message = <span class="string">'new message'</span> <span class="comment">// 데이터  변경</span></span><br><span class="line">vm.$el.textContent === <span class="string">'new message'</span> <span class="comment">// false</span></span><br><span class="line">Vue.nextTick(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  vm.$el.textContent === <span class="string">'new message'</span> <span class="comment">// true</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>또한 <code>vm.$nextTick()</code> 인스턴스 메소드가 있습니다. 이는 내부 컴포넌트들에 특히 유용합니다. 왜냐하면 전역 <code>Vue</code>가 필요없고 콜백의 <code>this</code> 컨텍스트가 자동으로 현재 Vue 인스턴스에 바인드될 것이기 때문입니다</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'example'</span>, &#123;</span><br><span class="line">  template: <span class="string">'&lt;span&gt;&#123;&#123; message &#125;&#125;&lt;/span&gt;'</span>,</span><br><span class="line">  data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      message: <span class="string">'갱신 안됨'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    updateMessage: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.message = <span class="string">'갱신됨'</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="keyword">this</span>.$el.textContent) <span class="comment">// =&gt; '갱신 안됨'</span></span><br><span class="line">      <span class="keyword">this</span>.$nextTick(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.$el.textContent) <span class="comment">// =&gt; '갱신됨'</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Since <code>$nextTick()</code> returns a promise, you can achieve the same as the above using the new <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function" target="_blank" rel="noopener">ES2017 async/await</a> syntax:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  updateMessage: <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.message = <span class="string">'updated'</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.$el.textContent) <span class="comment">// =&gt; 'not updated'</span></span><br><span class="line">    <span class="keyword">await</span> <span class="keyword">this</span>.$nextTick()</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.$el.textContent) <span class="comment">// =&gt; 'updated'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/vue/migration/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    Vue 1.x에서 마이그레이션
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/vue/security/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">Security</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="typescript-study/typescript-study.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2020 
+            <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

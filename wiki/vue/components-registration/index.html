@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <title>컴포넌트 등록 | Vue Search</title>
+    
+    
+        <meta name="keywords" content="Vue.js">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="이 페이지는 여러분이 이미 컴포넌트 기초를 읽었다고 가정하고 쓴 내용입니다. 컴포넌트가 처음이라면 기초 문서를 먼저 읽으시기 바랍니다.  Watch a free video lesson on Vue School ## 컴포넌트 이름  컴포넌트를 등록할 때는 항상 이름을 지어줘야 합니다. 예를 들어 우리가 살펴봤던 전역등록은 아래처럼 하죠. 1Vue.compo">
+<meta name="keywords" content="Vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="컴포넌트 등록">
+<meta property="og:url" content="https://vue-guide.github.io/wiki/vue/components-registration/index.html">
+<meta property="og:site_name" content="Vue Search">
+<meta property="og:description" content="이 페이지는 여러분이 이미 컴포넌트 기초를 읽었다고 가정하고 쓴 내용입니다. 컴포넌트가 처음이라면 기초 문서를 먼저 읽으시기 바랍니다.  Watch a free video lesson on Vue School ## 컴포넌트 이름  컴포넌트를 등록할 때는 항상 이름을 지어줘야 합니다. 예를 들어 우리가 살펴봤던 전역등록은 아래처럼 하죠. 1Vue.compo">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2020-03-19T01:48:23.919Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="컴포넌트 등록">
+<meta name="twitter:description" content="이 페이지는 여러분이 이미 컴포넌트 기초를 읽었다고 가정하고 쓴 내용입니다. 컴포넌트가 처음이라면 기초 문서를 먼저 읽으시기 바랍니다.  Watch a free video lesson on Vue School ## 컴포넌트 이름  컴포넌트를 등록할 때는 항상 이름을 지어줘야 합니다. 예를 들어 우리가 살펴봤던 전역등록은 아래처럼 하죠. 1Vue.compo">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="Vue Search" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+</head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Vue Search</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue-good-table
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vue-good-table/README/">Getting Started</a></li>  <li class="file"><a href="/wiki/vue-good-table/configuration/">Table Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/table-events/">Table Events</a></li>  <li class="file"><a href="/wiki/vue-good-table/search-options/">Search Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/sort-options/">Sort Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/pagination-options/">Pagination Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/column-options/">Column Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/column-filter-options/">Column Filter Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/advanced/">Customizations</a></li>  <li class="file"><a href="/wiki/vue-good-table/checkbox-table/">Checkbox Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/grouped-table/">Grouped Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/remote-workflow/">Server Side Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/style-configuration/">Themes</a></li>  <li class="file"><a href="/wiki/vue-good-table/style-classes/">Style Classes</a></li>  <li class="file"><a href="/wiki/vue-good-table/sass/">Sass</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vue/index/">시작하기</a></li>  <li class="file"><a href="/wiki/vue/installation/">설치방법</a></li>  <li class="file"><a href="/wiki/vue/instance/">Vue 인스턴스</a></li>  <li class="file"><a href="/wiki/vue/syntax/">템플릿 문법</a></li>  <li class="file"><a href="/wiki/vue/computed/">computed와 watch</a></li>  <li class="file"><a href="/wiki/vue/class-and-style/">클래스와 스타일 바인딩</a></li>  <li class="file"><a href="/wiki/vue/conditional/">조건부 렌더링</a></li>  <li class="file"><a href="/wiki/vue/list/">리스트 렌더링</a></li>  <li class="file"><a href="/wiki/vue/events/">이벤트 핸들링</a></li>  <li class="file"><a href="/wiki/vue/forms/">폼 입력 바인딩</a></li>  <li class="file"><a href="/wiki/vue/components/">컴포넌트</a></li>  <li class="file"><a href="/wiki/vue/transitions/">진입/진출 그리고 리스트 트랜지션</a></li>  <li class="file active"><a href="/wiki/vue/components-registration/">컴포넌트 등록</a></li>  <li class="file"><a href="/wiki/vue/transitioning-state/">상태 트랜지션</a></li>  <li class="file"><a href="/wiki/vue/components-props/">Props</a></li>  <li class="file"><a href="/wiki/vue/components-custom-events/">커스텀 이벤트</a></li>  <li class="file"><a href="/wiki/vue/components-slots/">슬롯(Slots)</a></li>  <li class="file"><a href="/wiki/vue/components-edge-cases/">Handling Edge Cases</a></li>  <li class="file"><a href="/wiki/vue/style-guide/">Style Guide</a></li>  <li class="file"><a href="/wiki/vue/comparison/">다른 프레임워크와의 비교</a></li>  <li class="file"><a href="/wiki/vue/mixins/">믹스인</a></li>  <li class="file"><a href="/wiki/vue/custom-directive/">사용자 지정 디렉티브</a></li>  <li class="file"><a href="/wiki/vue/render-function/">Render Functions & JSX</a></li>  <li class="file"><a href="/wiki/vue/plugins/">플러그인</a></li>  <li class="file"><a href="/wiki/vue/filters/">필터</a></li>  <li class="file"><a href="/wiki/vue/single-file-components/">싱글 파일 컴포넌트</a></li>  <li class="file"><a href="/wiki/vue/typescript/">TypeScript 지원</a></li>  <li class="file"><a href="/wiki/vue/unit-testing/">단위 테스팅</a></li>  <li class="file"><a href="/wiki/vue/deployment/">프로덕션 배포 팁</a></li>  <li class="file"><a href="/wiki/vue/routing/">라우팅</a></li>  <li class="file"><a href="/wiki/vue/state-management/">상태 관리</a></li>  <li class="file"><a href="/wiki/vue/ssr/">서버사이드 렌더링</a></li>  <li class="file"><a href="/wiki/vue/security/">Security</a></li>  <li class="file"><a href="/wiki/vue/reactivity/">반응형에 대해 깊이 알아보기</a></li>  <li class="file"><a href="/wiki/vue/migration/">Vue 1.x에서 마이그레이션</a></li>  <li class="file"><a href="/wiki/vue/migration-vue-router/">Vue Router 0.7.x으로 부터 마이그레이션</a></li>  <li class="file"><a href="/wiki/vue/migration-vuex/">Vuex 0.6.x에서 1.0로 마이그레이션</a></li>  <li class="file"><a href="/wiki/vue/team/">팀 구성원 만나기</a></li>  <li class="file"><a href="/wiki/vue/join/">Vue.js 커뮤니티에 참여하세요!</a></li>  <li class="file"><a href="/wiki/vue/components-dynamic-async/">동적 & 비동기 컴포넌트</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vuex/intro/">Vuex가 무엇인가요?</a></li>  <li class="file"><a href="/wiki/vuex/getting-started/">시작하기</a></li>  <li class="file"><a href="/wiki/vuex/hot-reload/">핫 리로딩</a></li>  <li class="file"><a href="/wiki/vuex/installation/">설치</a></li>  <li class="file"><a href="/wiki/vuex/modules/">모듈</a></li>  <li class="file"><a href="/wiki/vuex/mutations/">변이</a></li>  <li class="file"><a href="/wiki/vuex/getters/">Getters</a></li>  <li class="file"><a href="/wiki/vuex/api/">API 레퍼런스</a></li>  <li class="file"><a href="/wiki/vuex/actions/">액션</a></li>  <li class="file"><a href="/wiki/vuex/forms/">폼 핸들링</a></li>  <li class="file"><a href="/wiki/vuex/plugins/">플러그인</a></li>  <li class="file"><a href="/wiki/vuex/state/">상태</a></li>  <li class="file"><a href="/wiki/vuex/strict/">Strict 모드</a></li>  <li class="file"><a href="/wiki/vuex/structure/">애플리케이션 구조</a></li>  <li class="file"><a href="/wiki/vuex/testing/">테스팅</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-vue/components-registration" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/vue/components-registration/">
+            <time datetime="2019-02-01T10:04:47.000Z" itemprop="datePublished">2019-02-01</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/vue/components-registration.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/vue/components-registration.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/vue/components-registration.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            컴포넌트 등록
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#이름-표기법"><span class="toc-number">1.</span> <span class="toc-text">이름 표기법</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#케밥-표기법"><span class="toc-number">1.1.</span> <span class="toc-text">케밥-표기법</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#파스칼표기법"><span class="toc-number">1.2.</span> <span class="toc-text">파스칼표기법</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#전역-등록"><span class="toc-number"></span> <span class="toc-text">전역 등록</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#지역-등록"><span class="toc-number"></span> <span class="toc-text">지역 등록</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#모듈-시스템"><span class="toc-number"></span> <span class="toc-text">모듈 시스템</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#모듈-시스템에서-컴포넌트를-다른-컴포넌트에-지역적으로-등록하기"><span class="toc-number">1.</span> <span class="toc-text">모듈 시스템에서 컴포넌트를 다른 컴포넌트에 지역적으로 등록하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#기본-컴포넌트를-자동으로-전역-등록하기"><span class="toc-number">2.</span> <span class="toc-text">기본 컴포넌트를 자동으로 전역 등록하기</span></a></li></ol>
+                </div>
+            
+        
+        
+            <blockquote>
+<p>이 페이지는 여러분이 이미 <a href="components.html">컴포넌트 기초</a>를 읽었다고 가정하고 쓴 내용입니다. 컴포넌트가 처음이라면 기초 문서를 먼저 읽으시기 바랍니다.</p>
+</blockquote>
+<div class="vueschool"><a href="https://vueschool.io/lessons/global-vs-local-components?friend=vuejs" target="_blank" rel="sponsored noopener" title="Free Vue.js Component Registration lesson">Watch a free video lesson on Vue School</a></div>
+## 컴포넌트 이름
+
+<p>컴포넌트를 등록할 때는 항상 이름을 지어줘야 합니다. 예를 들어 우리가 살펴봤던 전역등록은 아래처럼 하죠.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'my-component-name'</span>, &#123; <span class="comment">/* ... */</span> &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>컴포넌트의 이름은 <code>Vue.component</code>의 첫번째 인자입니다.</p>
+<p>컴포넌트에 부여한 이름은 그 컴포넌트를 어디에 쓸 지에 따라 다를 수 있습니다. 컴포넌트를 (스트링 템플릿이나 <a href="single-file-components.html">싱글파일 컴포넌트</a>로 사용하지 않고) DOM에서 바로 사용할 때는 <a href="https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name" target="_blank" rel="noopener">W3C 규칙</a>에 따라서 사용자 정의 태그의 이름처럼 쓰는 것을 추천합니다(모두 소문자로 쓰고 단어는 하이픈(-)으로 연결하는 거죠). 이렇게 하면 지금 있거나 앞으로 작성할 HTML 엘리먼트와 충돌하는 것을 피할 수 있습니다.</p>
+<p>기타 컴포넌트 이름을 지을 때 숙지할 내용은 <a href="../style-guide/#베이스-컴포넌트-이름-매우-추천함">스타일 가이드</a>를 참고해주세요.</p>
+<h3 id="이름-표기법"><a href="#이름-표기법" class="headerlink" title="이름 표기법"></a>이름 표기법</h3><p>컴포넌트 이름을 지을 때는 두 가지 방법이 있습니다.</p>
+<h4 id="케밥-표기법"><a href="#케밥-표기법" class="headerlink" title="케밥-표기법"></a>케밥-표기법</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'my-component-name'</span>, &#123; <span class="comment">/* ... */</span> &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>케밥-표기법으로 컴포넌트를 정의할 때는 사용자 정의 엘리먼트를 부를 때에도 <code>&lt;my-component-name&gt;</code>와 같이 반드시 케밥-표기법을 사용해야 합니다.</p>
+<h4 id="파스칼표기법"><a href="#파스칼표기법" class="headerlink" title="파스칼표기법"></a>파스칼표기법</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'MyComponentName'</span>, &#123; <span class="comment">/* ... */</span> &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>파스칼표기법으로 컴포넌트를 정의할 때는 사용자 정의 엘리먼트를 부를 때 두 가지 표기법 모두 사용할 수 있습니다. 즉 <code>&lt;my-component-name&gt;</code>와 <code>&lt;MyComponentName&gt;</code> 모두 괜찮습니다. 단, DOM에 바로 쓸 때는 케밥-표기법 이름만 가능합니다.</p>
+<h2 id="전역-등록"><a href="#전역-등록" class="headerlink" title="전역 등록"></a>전역 등록</h2><p>지금까지 우리는 <code>Vue.component</code>를 이용해서만 컴포넌트를 만들었습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'my-component-name'</span>, &#123;</span><br><span class="line">  <span class="comment">// ... options ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>이런 컴포넌트를 <strong>전역 등록</strong>되었다고 합니다. 즉 어떤 루트 Vue 인스턴스(<code>new Vue</code>)에서도 사용할 수 있는 거죠.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'component-a'</span>, &#123; <span class="comment">/* ... */</span> &#125;)</span><br><span class="line">Vue.component(<span class="string">'component-b'</span>, &#123; <span class="comment">/* ... */</span> &#125;)</span><br><span class="line">Vue.component(<span class="string">'component-c'</span>, &#123; <span class="comment">/* ... */</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123; <span class="attr">el</span>: <span class="string">'#app'</span> &#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">component-a</span>&gt;</span><span class="tag">&lt;/<span class="name">component-a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">component-b</span>&gt;</span><span class="tag">&lt;/<span class="name">component-b</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">component-c</span>&gt;</span><span class="tag">&lt;/<span class="name">component-c</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>이렇게 등록한 컴포넌트들은 모든 하위 컴포넌트에도 사용가능합니다. 즉 위의 3개 컴포넌트들은 <em>각각의 컴포넌트 안에서도</em> 사용할 수 있습니다.</p>
+<h2 id="지역-등록"><a href="#지역-등록" class="headerlink" title="지역 등록"></a>지역 등록</h2><p>전역 등록이 썩 좋기만 한 건 아닙니다. 예를 들어 웹팩같은 빌드 시스템을 사용하고 모든 컴포넌트를 전역 등록했으면 설사 어떤 컴포넌트를 더 이상 사용하지 않더라도 최종 빌드에는 들어가 있게 됩니다. 사용자가 내려받아야 하는 자바스크립트의 양이 불필요하게 커지는 거죠.</p>
+<p>이 경우에 컴포넌트를 일반 자바스크립트 객체로 정의할 수 있습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ComponentA = &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="keyword">var</span> ComponentB = &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"><span class="keyword">var</span> ComponentC = &#123; <span class="comment">/* ... */</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>그러면 사용할 컴포넌트들만 <code>components</code> 옵션을 통해 쓸 수 있습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  components: &#123;</span><br><span class="line">    <span class="string">'component-a'</span>: ComponentA,</span><br><span class="line">    <span class="string">'component-b'</span>: ComponentB</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>components</code> 객체의 각 속성에서 키가 커스텀 엘리먼트의 이름이 되고 밸류가 사용할 컴포넌트 객체를 지정합니다.</p>
+<p><strong>지역 등록된 컴포넌트는 하위컴포넌트에서는 사용이 <em>불가능하다</em></strong>는 점을 유의해야 합니다. 예를 들어 <code>ComponentA</code>를 <code>ComponentB</code>에서 쓰고 싶다면 아래와 같이 해야 합니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ComponentA = &#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ComponentB = &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    <span class="string">'component-a'</span>: ComponentA</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>바벨이나 웹팩을 이용해서 ES2015를 적용하고 있다면 싱글파일 컴포넌트를 이용해서 이렇게 할 수도 있습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ComponentA <span class="keyword">from</span> <span class="string">'./ComponentA.vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    ComponentA</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ES2015 이상에서는 객체 내의 <code>components</code> 옵션에서 <code>ComponentA: ComponentA</code>라고 하지 않고 <code>ComponentA</code>라고만 해도 됩니다. 즉 키로 아래의 두 가지가 모두 가능합니다.(역자 주: <code>component-a: ComponentA</code>, <code>ComponentA: ComponentA</code>, <code>ComponentA</code>가 모두 가능합니다.)</p>
+<ul>
+<li>템플릿에서 사용할 사용자정의 엘리먼트 이름</li>
+<li>컴포넌트 옵션에 들어갈 변수명</li>
+</ul>
+<h2 id="모듈-시스템"><a href="#모듈-시스템" class="headerlink" title="모듈 시스템"></a>모듈 시스템</h2><p><code>import</code>/<code>require</code>를 이용한 모듈 시스템을 쓰지 않으면 이번 내용은 넘어가도 괜찮습니다. 만약 모듈 시스템을 쓴다면 특별한 소개와 팁을 드리도록 할게요.</p>
+<h3 id="모듈-시스템에서-컴포넌트를-다른-컴포넌트에-지역적으로-등록하기"><a href="#모듈-시스템에서-컴포넌트를-다른-컴포넌트에-지역적으로-등록하기" class="headerlink" title="모듈 시스템에서 컴포넌트를 다른 컴포넌트에 지역적으로 등록하기"></a>모듈 시스템에서 컴포넌트를 다른 컴포넌트에 지역적으로 등록하기</h3><p>지금 읽고 있다면 당신은 모듈 시스템을 쓴다는 뜻이겠죠. 바벨이나 웹팩같은 것과 함께 말입니다. 이 경우에는 <code>components</code> 디렉토리를 만들고 각 컴포넌트들을 그 자체로 하나의 파일에 관리하는 것을 추천합니다.</p>
+<p>그러면 어떤 컴포넌트를 다른 컴포넌트에 지역적으로 등록하기 전에 사용할 컴포넌트를 가져와야 합니다. 예를 들면 <code>ComponentB.js</code>나 <code>ComponentB.vue</code>같은 파일에서 아래처럼 다른 컴포넌트를 가져오는 거죠.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> ComponentA <span class="keyword">from</span> <span class="string">'./ComponentA'</span></span><br><span class="line"><span class="keyword">import</span> ComponentC <span class="keyword">from</span> <span class="string">'./ComponentC'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    ComponentA,</span><br><span class="line">    ComponentC</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>이제 <code>ComponentA</code>와 <code>ComponentC 모두</code>ComponentB`의 템플릿에서 사용할 수 있습니다.</p>
+<h3 id="기본-컴포넌트를-자동으로-전역-등록하기"><a href="#기본-컴포넌트를-자동으로-전역-등록하기" class="headerlink" title="기본 컴포넌트를 자동으로 전역 등록하기"></a>기본 컴포넌트를 자동으로 전역 등록하기</h3><p>많은 컴포넌트들은 여기저기서 쓰이고 입력값이나 버튼 하나로 구성될 수도 있습니다. 이런 컴포넌트는 <a href="../style-guide/#베이스-컴포넌트-이름-매우-추천함">기본 컴포넌트</a>라고 하고 여러 컴포넌트들에서 매우 빈번하게 사용합니다.</p>
+<p>그래서 많은 컴포넌트에서 긴 기본 컴포넌트 목록을 보게 되죠.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> BaseButton <span class="keyword">from</span> <span class="string">'./BaseButton.vue'</span></span><br><span class="line"><span class="keyword">import</span> BaseIcon <span class="keyword">from</span> <span class="string">'./BaseIcon.vue'</span></span><br><span class="line"><span class="keyword">import</span> BaseInput <span class="keyword">from</span> <span class="string">'./BaseInput.vue'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    BaseButton,</span><br><span class="line">    BaseIcon,</span><br><span class="line">    BaseInput</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>템플릿에서는 좀 더 짧은 마크업을 사용할 수 있습니다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">BaseInput</span></span></span><br><span class="line"><span class="tag">  <span class="attr">v-model</span>=<span class="string">"searchText"</span></span></span><br><span class="line"><span class="tag">  @<span class="attr">keydown.enter</span>=<span class="string">"search"</span></span></span><br><span class="line"><span class="tag">/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">BaseButton</span> @<span class="attr">click</span>=<span class="string">"search"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">BaseIcon</span> <span class="attr">name</span>=<span class="string">"search"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">BaseButton</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>다행히 웹팩을 쓴다면(<a href="https://github.com/vuejs/vue-cli" target="_blank" rel="noopener">Vue CLI 3+</a>, which uses Webpack internally)을 쓴다면 그 안에 내장하고 있어요) <code>require.context</code>를 써서 자주 쓰는 기본 컴포넌트들을 전역 등록할 수 있습니다. 아래의 예시는 어플리케이션의 엔트리 파일(e.g. <code>src/main.js</code>)에 기본 컴포넌트들을 전역적으로 불러오는 코드입니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> upperFirst <span class="keyword">from</span> <span class="string">'lodash/upperFirst'</span></span><br><span class="line"><span class="keyword">import</span> camelCase <span class="keyword">from</span> <span class="string">'lodash/camelCase'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> requireComponent = <span class="built_in">require</span>.context(</span><br><span class="line">  <span class="comment">// 컴포넌트들이 있는 폴더</span></span><br><span class="line">  <span class="string">'./components'</span>,</span><br><span class="line">  <span class="comment">// 하위 폴더까지 포함할 지 여부</span></span><br><span class="line">  <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// 기본 컴포넌트를 찾는데 사용할 정규표현식</span></span><br><span class="line">  /Base[A-Z]\w+\.(vue|js)$/</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">requireComponent.keys().forEach(<span class="function"><span class="params">fileName</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 컴포넌트 설정 가져오기</span></span><br><span class="line">  <span class="keyword">const</span> componentConfig = requireComponent(fileName)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 컴포넌트의 파스칼표기법 이름 가져오기</span></span><br><span class="line">  <span class="keyword">const</span> componentName = upperFirst(</span><br><span class="line">    camelCase(</span><br><span class="line">      <span class="comment">// 폴더 위치와 무관하게 파일이름 추출</span></span><br><span class="line">      fileName</span><br><span class="line">        .split(<span class="string">'/'</span>)</span><br><span class="line">        .pop()</span><br><span class="line">        .replace(<span class="regexp">/\.\w+$/</span>, <span class="string">''</span>)</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 컴포넌트를 전역적으로 등록</span></span><br><span class="line">  Vue.component(</span><br><span class="line">    componentName,</span><br><span class="line">    <span class="comment">// `export default`를 이용한 컴포넌트는 `.default`로 컴포넌트</span></span><br><span class="line">    <span class="comment">// 옵션을 추출하고 그렇지 않은 컴포넌트는 모듈의 루트를 호출</span></span><br><span class="line">    componentConfig.default || componentConfig</span><br><span class="line">  )</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>** 전역 등록은 (<code>new Vue</code>로) 루트 Vue 인스턴스가 만들어지기 전에 반드시 이뤄져야 한다는 것**을 기억해주시기 바랍니다. 실제 프로젝트에서 이 패턴이 어떻게 이뤄지는지 <a href="https://github.com/chrisvfritz/vue-enterprise-boilerplate/blob/master/src/components/_globals.js" target="_blank" rel="noopener">이 예시</a>를 참고해주세요.</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/vue/transitions/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    진입/진출 그리고 리스트 트랜지션
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/vue/components/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">컴포넌트</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="typescript-study/typescript-study.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2020 
+            <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

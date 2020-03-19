@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <title>Handling Edge Cases | Vue Search</title>
+    
+    
+        <meta name="keywords" content="Vue.js">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="This page assumes you’ve already read the Components Basics. Read that first if you are new to components.  All the features on this page document the handling of edge cases, meaning unusual situatio">
+<meta name="keywords" content="Vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Handling Edge Cases">
+<meta property="og:url" content="https://vue-guide.github.io/wiki/vue/components-edge-cases/index.html">
+<meta property="og:site_name" content="Vue Search">
+<meta property="og:description" content="This page assumes you’ve already read the Components Basics. Read that first if you are new to components.  All the features on this page document the handling of edge cases, meaning unusual situatio">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2020-03-19T01:48:23.919Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Handling Edge Cases">
+<meta name="twitter:description" content="This page assumes you’ve already read the Components Basics. Read that first if you are new to components.  All the features on this page document the handling of edge cases, meaning unusual situatio">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="Vue Search" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+</head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Vue Search</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue-good-table
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vue-good-table/README/">Getting Started</a></li>  <li class="file"><a href="/wiki/vue-good-table/configuration/">Table Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/table-events/">Table Events</a></li>  <li class="file"><a href="/wiki/vue-good-table/search-options/">Search Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/sort-options/">Sort Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/pagination-options/">Pagination Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/column-options/">Column Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/column-filter-options/">Column Filter Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/advanced/">Customizations</a></li>  <li class="file"><a href="/wiki/vue-good-table/checkbox-table/">Checkbox Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/grouped-table/">Grouped Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/remote-workflow/">Server Side Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/style-configuration/">Themes</a></li>  <li class="file"><a href="/wiki/vue-good-table/style-classes/">Style Classes</a></li>  <li class="file"><a href="/wiki/vue-good-table/sass/">Sass</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vue/index/">시작하기</a></li>  <li class="file"><a href="/wiki/vue/installation/">설치방법</a></li>  <li class="file"><a href="/wiki/vue/instance/">Vue 인스턴스</a></li>  <li class="file"><a href="/wiki/vue/syntax/">템플릿 문법</a></li>  <li class="file"><a href="/wiki/vue/computed/">computed와 watch</a></li>  <li class="file"><a href="/wiki/vue/class-and-style/">클래스와 스타일 바인딩</a></li>  <li class="file"><a href="/wiki/vue/conditional/">조건부 렌더링</a></li>  <li class="file"><a href="/wiki/vue/list/">리스트 렌더링</a></li>  <li class="file"><a href="/wiki/vue/events/">이벤트 핸들링</a></li>  <li class="file"><a href="/wiki/vue/forms/">폼 입력 바인딩</a></li>  <li class="file"><a href="/wiki/vue/components/">컴포넌트</a></li>  <li class="file"><a href="/wiki/vue/transitions/">진입/진출 그리고 리스트 트랜지션</a></li>  <li class="file"><a href="/wiki/vue/components-registration/">컴포넌트 등록</a></li>  <li class="file"><a href="/wiki/vue/transitioning-state/">상태 트랜지션</a></li>  <li class="file"><a href="/wiki/vue/components-props/">Props</a></li>  <li class="file"><a href="/wiki/vue/components-custom-events/">커스텀 이벤트</a></li>  <li class="file"><a href="/wiki/vue/components-slots/">슬롯(Slots)</a></li>  <li class="file active"><a href="/wiki/vue/components-edge-cases/">Handling Edge Cases</a></li>  <li class="file"><a href="/wiki/vue/style-guide/">Style Guide</a></li>  <li class="file"><a href="/wiki/vue/comparison/">다른 프레임워크와의 비교</a></li>  <li class="file"><a href="/wiki/vue/mixins/">믹스인</a></li>  <li class="file"><a href="/wiki/vue/custom-directive/">사용자 지정 디렉티브</a></li>  <li class="file"><a href="/wiki/vue/render-function/">Render Functions & JSX</a></li>  <li class="file"><a href="/wiki/vue/plugins/">플러그인</a></li>  <li class="file"><a href="/wiki/vue/filters/">필터</a></li>  <li class="file"><a href="/wiki/vue/single-file-components/">싱글 파일 컴포넌트</a></li>  <li class="file"><a href="/wiki/vue/typescript/">TypeScript 지원</a></li>  <li class="file"><a href="/wiki/vue/unit-testing/">단위 테스팅</a></li>  <li class="file"><a href="/wiki/vue/deployment/">프로덕션 배포 팁</a></li>  <li class="file"><a href="/wiki/vue/routing/">라우팅</a></li>  <li class="file"><a href="/wiki/vue/state-management/">상태 관리</a></li>  <li class="file"><a href="/wiki/vue/ssr/">서버사이드 렌더링</a></li>  <li class="file"><a href="/wiki/vue/security/">Security</a></li>  <li class="file"><a href="/wiki/vue/reactivity/">반응형에 대해 깊이 알아보기</a></li>  <li class="file"><a href="/wiki/vue/migration/">Vue 1.x에서 마이그레이션</a></li>  <li class="file"><a href="/wiki/vue/migration-vue-router/">Vue Router 0.7.x으로 부터 마이그레이션</a></li>  <li class="file"><a href="/wiki/vue/migration-vuex/">Vuex 0.6.x에서 1.0로 마이그레이션</a></li>  <li class="file"><a href="/wiki/vue/team/">팀 구성원 만나기</a></li>  <li class="file"><a href="/wiki/vue/join/">Vue.js 커뮤니티에 참여하세요!</a></li>  <li class="file"><a href="/wiki/vue/components-dynamic-async/">동적 & 비동기 컴포넌트</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vuex/intro/">Vuex가 무엇인가요?</a></li>  <li class="file"><a href="/wiki/vuex/getting-started/">시작하기</a></li>  <li class="file"><a href="/wiki/vuex/hot-reload/">핫 리로딩</a></li>  <li class="file"><a href="/wiki/vuex/installation/">설치</a></li>  <li class="file"><a href="/wiki/vuex/modules/">모듈</a></li>  <li class="file"><a href="/wiki/vuex/mutations/">변이</a></li>  <li class="file"><a href="/wiki/vuex/getters/">Getters</a></li>  <li class="file"><a href="/wiki/vuex/api/">API 레퍼런스</a></li>  <li class="file"><a href="/wiki/vuex/actions/">액션</a></li>  <li class="file"><a href="/wiki/vuex/forms/">폼 핸들링</a></li>  <li class="file"><a href="/wiki/vuex/plugins/">플러그인</a></li>  <li class="file"><a href="/wiki/vuex/state/">상태</a></li>  <li class="file"><a href="/wiki/vuex/strict/">Strict 모드</a></li>  <li class="file"><a href="/wiki/vuex/structure/">애플리케이션 구조</a></li>  <li class="file"><a href="/wiki/vuex/testing/">테스팅</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-vue/components-edge-cases" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/vue/components-edge-cases/">
+            <time datetime="2019-02-06T10:04:47.000Z" itemprop="datePublished">2019-02-06</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/vue/components-edge-cases.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/vue/components-edge-cases.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/vue/components-edge-cases.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Handling Edge Cases
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Accessing-the-Root-Instance"><span class="toc-number">1.</span> <span class="toc-text">Accessing the Root Instance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Accessing-Child-Component-Instances-amp-Child-Elements"><span class="toc-number">2.</span> <span class="toc-text">Accessing Child Component Instances &amp; Child Elements</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Programmatic-Event-Listeners"><span class="toc-number"></span> <span class="toc-text">Programmatic Event Listeners</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Recursive-Components"><span class="toc-number">1.</span> <span class="toc-text">Recursive Components</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Circular-References-Between-Components"><span class="toc-number">2.</span> <span class="toc-text">Circular References Between Components</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Alternate-Template-Definitions"><span class="toc-number"></span> <span class="toc-text">Alternate Template Definitions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Inline-Templates"><span class="toc-number">1.</span> <span class="toc-text">Inline Templates</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forcing-an-Update"><span class="toc-number">2.</span> <span class="toc-text">Forcing an Update</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cheap-Static-Components-with-v-once"><span class="toc-number">3.</span> <span class="toc-text">Cheap Static Components with v-once</span></a></li></ol>
+                </div>
+            
+        
+        
+            <blockquote>
+<p>This page assumes you’ve already read the <a href="components.html">Components Basics</a>. Read that first if you are new to components.</p>
+</blockquote>
+<p class="tip">All the features on this page document the handling of edge cases, meaning unusual situations that sometimes require bending Vue's rules a little. Note however, that they all have disadvantages or situations where they could be dangerous. These are noted in each case, so keep them in mind when deciding to use each feature.</p>
+## Element & Component Access
+
+<p>In most cases, it’s best to avoid reaching into other component instances or manually manipulating DOM elements. There are cases, however, when it can be appropriate.</p>
+<h3 id="Accessing-the-Root-Instance"><a href="#Accessing-the-Root-Instance" class="headerlink" title="Accessing the Root Instance"></a>Accessing the Root Instance</h3><p>In every subcomponent of a <code>new Vue</code> instance, this root instance can be accessed with the <code>$root</code> property. For example, in this root instance:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The root Vue instance</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    foo: <span class="number">1</span></span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    bar: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    baz: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="comment">/* ... */</span> &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>All subcomponents will now be able to access this instance and use it as a global store:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Get root data</span></span><br><span class="line"><span class="keyword">this</span>.$root.foo</span><br><span class="line"></span><br><span class="line"><span class="comment">// Set root data</span></span><br><span class="line"><span class="keyword">this</span>.$root.foo = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Access root computed properties</span></span><br><span class="line"><span class="keyword">this</span>.$root.bar</span><br><span class="line"></span><br><span class="line"><span class="comment">// Call root methods</span></span><br><span class="line"><span class="keyword">this</span>.$root.baz()</span><br></pre></td></tr></table></figure>
+
+<p class="tip">This can be convenient for demos or very small apps with a handful of components. However, the pattern does not scale well to medium or large-scale applications, so we strongly recommend using <a href="https://github.com/vuejs/vuex" target="_blank" rel="noopener">Vuex</a> to manage state in most cases.</p>
+### Accessing the Parent Component Instance
+
+<p>Similar to <code>$root</code>, the <code>$parent</code> property can be used to access the parent instance from a child. This can be tempting to reach for as a lazy alternative to passing data with a prop.</p>
+<p class="tip">In most cases, reaching into the parent makes your application more difficult to debug and understand, especially if you mutate data in the parent. When looking at that component later, it will be very difficult to figure out where that mutation came from.</p>
+There are cases however, particularly shared component libraries, when this _might_ be appropriate. For example, in abstract components that interact with JavaScript APIs instead of rendering HTML, like these hypothetical Google Maps components:
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">google-map</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">google-map-markers</span> <span class="attr">v-bind:places</span>=<span class="string">"iceCreamShops"</span>&gt;</span><span class="tag">&lt;/<span class="name">google-map-markers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">google-map</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>The <code>&lt;google-map&gt;</code> component might define a <code>map</code> property that all subcomponents need access to. In this case <code>&lt;google-map-markers&gt;</code> might want to access that map with something like <code>this.$parent.getMap</code>, in order to add a set of markers to it. You can see this pattern <a href="https://jsfiddle.net/chrisvfritz/ttzutdxh/" target="_blank" rel="noopener">in action here</a>.</p>
+<p>Keep in mind, however, that components built with this pattern are still inherently fragile. For example, imagine we add a new <code>&lt;google-map-region&gt;</code> component and when <code>&lt;google-map-markers&gt;</code> appears within that, it should only render markers that fall within that region:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">google-map</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">google-map-region</span> <span class="attr">v-bind:shape</span>=<span class="string">"cityBoundaries"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">google-map-markers</span> <span class="attr">v-bind:places</span>=<span class="string">"iceCreamShops"</span>&gt;</span><span class="tag">&lt;/<span class="name">google-map-markers</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">google-map-region</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">google-map</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Then inside <code>&lt;google-map-markers&gt;</code> you might find yourself reaching for a hack like this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> map = <span class="keyword">this</span>.$parent.map || <span class="keyword">this</span>.$parent.$parent.map</span><br></pre></td></tr></table></figure>
+
+<p>This has quickly gotten out of hand. That’s why to provide context information to descendent components arbitrarily deep, we instead recommend <a href="#Dependency-Injection">dependency injection</a>.</p>
+<h3 id="Accessing-Child-Component-Instances-amp-Child-Elements"><a href="#Accessing-Child-Component-Instances-amp-Child-Elements" class="headerlink" title="Accessing Child Component Instances &amp; Child Elements"></a>Accessing Child Component Instances &amp; Child Elements</h3><p>Despite the existence of props and events, sometimes you might still need to directly access a child component in JavaScript. To achieve this you can assign a reference ID to the child component using the <code>ref</code> attribute. For example:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">base-input</span> <span class="attr">ref</span>=<span class="string">"usernameInput"</span>&gt;</span><span class="tag">&lt;/<span class="name">base-input</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Now in the component where you’ve defined this <code>ref</code>, you can use:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$refs.usernameInput</span><br></pre></td></tr></table></figure>
+
+<p>to access the <code>&lt;base-input&gt;</code> instance. This may be useful when you want to, for example, programmatically focus this input from a parent. In that case, the <code>&lt;base-input&gt;</code> component may similarly use a <code>ref</code> to provide access to specific elements inside it, such as:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">ref</span>=<span class="string">"input"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>And even define methods for use by the parent:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">  <span class="comment">// Used to focus the input from the parent</span></span><br><span class="line">  focus: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.$refs.input.focus()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Thus allowing the parent component to focus the input inside <code>&lt;base-input&gt;</code> with:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$refs.usernameInput.focus()</span><br></pre></td></tr></table></figure>
+
+<p>When <code>ref</code> is used together with <code>v-for</code>, the ref you get will be an array containing the child components mirroring the data source.</p>
+<p class="tip"><code>$refs</code> are only populated after the component has been rendered, and they are not reactive. It is only meant as an escape hatch for direct child manipulation - you should avoid accessing <code>$refs</code> from within templates or computed properties.</p>
+### Dependency Injection
+
+<p>Earlier, when we described <a href="#Accessing-the-Parent-Component-Instance">Accessing the Parent Component Instance</a>, we showed an example like this:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">google-map</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">google-map-region</span> <span class="attr">v-bind:shape</span>=<span class="string">"cityBoundaries"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">google-map-markers</span> <span class="attr">v-bind:places</span>=<span class="string">"iceCreamShops"</span>&gt;</span><span class="tag">&lt;/<span class="name">google-map-markers</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">google-map-region</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">google-map</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>In this component, all descendants of <code>&lt;google-map&gt;</code> needed access to a <code>getMap</code> method, in order to know which map to interact with. Unfortunately, using the <code>$parent</code> property didn’t scale well to more deeply nested components. That’s where dependency injection can be useful, using two new instance options: <code>provide</code> and <code>inject</code>.</p>
+<p>The <code>provide</code> options allows us to specify the data/methods we want to <strong>provide</strong> to descendent components. In this case, that’s the <code>getMap</code> method inside <code>&lt;google-map&gt;</code>:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">provide: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    getMap: <span class="keyword">this</span>.getMap</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Then in any descendants, we can use the <code>inject</code> option to receive specific properties we’d like to add to that instance:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inject: [<span class="string">'getMap'</span>]</span><br></pre></td></tr></table></figure>
+
+<p>You can see the <a href="https://jsfiddle.net/chrisvfritz/tdv8dt3s/" target="_blank" rel="noopener">full example here</a>. The advantage over using <code>$parent</code> is that we can access <code>getMap</code> in <em>any</em> descendant component, without exposing the entire instance of <code>&lt;google-map&gt;</code>. This allows us to more safely keep developing that component, without fear that we might change/remove something that a child component is relying on. The interface between these components remains clearly defined, just as with <code>props</code>.</p>
+<p>In fact, you can think of dependency injection as sort of “long-range props”, except:</p>
+<ul>
+<li>ancestor components don’t need to know which descendants use the properties it provides</li>
+<li>descendant components don’t need to know where injected properties are coming from</li>
+</ul>
+<p class="tip">However, there are downsides to dependency injection. It couples components in your application to the way they're currently organized, making refactoring more difficult. Provided properties are also not reactive. This is by design, because using them to create a central data store scales just as poorly as <a href="#Accessing-the-Root-Instance">using <code>$root</code></a> for the same purpose. If the properties you want to share are specific to your app, rather than generic, or if you ever want to update provided data inside ancestors, then that's a good sign that you probably need a real state management solution like <a href="https://github.com/vuejs/vuex" target="_blank" rel="noopener">Vuex</a> instead.</p>
+Learn more about dependency injection in [the API doc](https://vuejs.org/v2/api/#provide-inject).
+
+<h2 id="Programmatic-Event-Listeners"><a href="#Programmatic-Event-Listeners" class="headerlink" title="Programmatic Event Listeners"></a>Programmatic Event Listeners</h2><p>So far, you’ve seen uses of <code>$emit</code>, listened to with <code>v-on</code>, but Vue instances also offer other methods in its events interface. We can:</p>
+<ul>
+<li>Listen for an event with <code>$on(eventName, eventHandler)</code></li>
+<li>Listen for an event only once with <code>$once(eventName, eventHandler)</code></li>
+<li>Stop listening for an event with <code>$off(eventName, eventHandler)</code></li>
+</ul>
+<p>You normally won’t have to use these, but they’re available for cases when you need to manually listen for events on a component instance. They can also be useful as a code organization tool. For example, you may often see this pattern for integrating a 3rd-party library:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Attach the datepicker to an input once</span></span><br><span class="line"><span class="comment">// it's mounted to the DOM.</span></span><br><span class="line">mounted: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// Pikaday is a 3rd-party datepicker library</span></span><br><span class="line">  <span class="keyword">this</span>.picker = <span class="keyword">new</span> Pikaday(&#123;</span><br><span class="line">    field: <span class="keyword">this</span>.$refs.input,</span><br><span class="line">    format: <span class="string">'YYYY-MM-DD'</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br><span class="line"><span class="comment">// Right before the component is destroyed,</span></span><br><span class="line"><span class="comment">// also destroy the datepicker.</span></span><br><span class="line">beforeDestroy: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.picker.destroy()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>This has two potential issues:</p>
+<ul>
+<li>It requires saving the <code>picker</code> to the component instance, when it’s possible that only lifecycle hooks need access to it. This isn’t terrible, but it could be considered clutter.</li>
+<li>Our setup code is kept separate from our cleanup code, making it more difficult to programmatically clean up anything we set up.</li>
+</ul>
+<p>You could resolve both issues with a programmatic listener:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mounted: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> picker = <span class="keyword">new</span> Pikaday(&#123;</span><br><span class="line">    field: <span class="keyword">this</span>.$refs.input,</span><br><span class="line">    format: <span class="string">'YYYY-MM-DD'</span></span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.$once(<span class="string">'hook:beforeDestroy'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    picker.destroy()</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Using this strategy, we could even use Pikaday with several input elements, with each new instance automatically cleaning up after itself:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mounted: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.attachDatepicker(<span class="string">'startDateInput'</span>)</span><br><span class="line">  <span class="keyword">this</span>.attachDatepicker(<span class="string">'endDateInput'</span>)</span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">  attachDatepicker: <span class="function"><span class="keyword">function</span> (<span class="params">refName</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> picker = <span class="keyword">new</span> Pikaday(&#123;</span><br><span class="line">      field: <span class="keyword">this</span>.$refs[refName],</span><br><span class="line">      format: <span class="string">'YYYY-MM-DD'</span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.$once(<span class="string">'hook:beforeDestroy'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      picker.destroy()</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>See <a href="https://jsfiddle.net/09jvu65m/" target="_blank" rel="noopener">this fiddle</a> for the full code. Note, however, that if you find yourself having to do a lot of setup and cleanup within a single component, the best solution will usually be to create more modular components. In this case, we’d recommend creating a reusable <code>&lt;input-datepicker&gt;</code> component.</p>
+<p>To learn more about programmatic listeners, check out the API for <a href="https://vuejs.org/v2/api/#Instance-Methods-Events" target="_blank" rel="noopener">Events Instance Methods</a>.</p>
+<p class="tip">Note that Vue's event system is different from the browser's <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget" target="_blank" rel="noopener">EventTarget API</a>. Though they work similarly, <code>$emit</code>, <code>$on</code>, and <code>$off</code> are <strong>not</strong> aliases for <code>dispatchEvent</code>, <code>addEventListener</code>, and <code>removeEventListener</code>.</p>
+## Circular References
+
+<h3 id="Recursive-Components"><a href="#Recursive-Components" class="headerlink" title="Recursive Components"></a>Recursive Components</h3><p>Components can recursively invoke themselves in their own template. However, they can only do so with the <code>name</code> option:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name: <span class="string">'unique-name-of-my-component'</span></span><br></pre></td></tr></table></figure>
+
+<p>When you register a component globally using <code>Vue.component</code>, the global ID is automatically set as the component’s <code>name</code> option.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'unique-name-of-my-component'</span>, &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>If you’re not careful, recursive components can also lead to infinite loops:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">name: <span class="string">'stack-overflow'</span>,</span><br><span class="line">template: <span class="string">'&lt;div&gt;&lt;stack-overflow&gt;&lt;/stack-overflow&gt;&lt;/div&gt;'</span></span><br></pre></td></tr></table></figure>
+
+<p>A component like the above will result in a “max stack size exceeded” error, so make sure recursive invocation is conditional (i.e. uses a <code>v-if</code> that will eventually be <code>false</code>).</p>
+<h3 id="Circular-References-Between-Components"><a href="#Circular-References-Between-Components" class="headerlink" title="Circular References Between Components"></a>Circular References Between Components</h3><p>Let’s say you’re building a file directory tree, like in Finder or File Explorer. You might have a <code>tree-folder</code> component with this template:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123; folder.name &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">tree-folder-contents</span> <span class="attr">:children</span>=<span class="string">"folder.children"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Then a <code>tree-folder-contents</code> component with this template:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"child in children"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tree-folder</span> <span class="attr">v-if</span>=<span class="string">"child.children"</span> <span class="attr">:folder</span>=<span class="string">"child"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-else</span>&gt;</span>&#123;&#123; child.name &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>When you look closely, you’ll see that these components will actually be each other’s descendent <em>and</em> ancestor in the render tree - a paradox! When registering components globally with <code>Vue.component</code>, this paradox is resolved for you automatically. If that’s you, you can stop reading here.</p>
+<p>However, if you’re requiring/importing components using a <strong>module system</strong>, e.g. via Webpack or Browserify, you’ll get an error:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Failed to mount component: template or render function not defined.</span><br></pre></td></tr></table></figure>
+
+<p>To explain what’s happening, let’s call our components A and B. The module system sees that it needs A, but first A needs B, but B needs A, but A needs B, etc. It’s stuck in a loop, not knowing how to fully resolve either component without first resolving the other. To fix this, we need to give the module system a point at which it can say, “A needs B <em>eventually</em>, but there’s no need to resolve B first.”</p>
+<p>In our case, let’s make that point the <code>tree-folder</code> component. We know the child that creates the paradox is the <code>tree-folder-contents</code> component, so we’ll wait until the <code>beforeCreate</code> lifecycle hook to register it:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">beforeCreate: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.$options.components.TreeFolderContents = <span class="built_in">require</span>(<span class="string">'./tree-folder-contents.vue'</span>).default</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Or alternatively, you could use Webpack’s asynchronous <code>import</code> when you register the component locally:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">components: &#123;</span><br><span class="line">  TreeFolderContents: <span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">import</span>(<span class="string">'./tree-folder-contents.vue'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Problem solved!</p>
+<h2 id="Alternate-Template-Definitions"><a href="#Alternate-Template-Definitions" class="headerlink" title="Alternate Template Definitions"></a>Alternate Template Definitions</h2><h3 id="Inline-Templates"><a href="#Inline-Templates" class="headerlink" title="Inline Templates"></a>Inline Templates</h3><p>When the <code>inline-template</code> special attribute is present on a child component, the component will use its inner content as its template, rather than treating it as distributed content. This allows more flexible template-authoring.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">my-component</span> <span class="attr">inline-template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>These are compiled as the component's own template.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Not parent's transclusion content.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Your inline template needs to be defined inside the DOM element to which Vue is attached.</p>
+<p class="tip">However, <code>inline-template</code> makes the scope of your templates harder to reason about. As a best practice, prefer defining templates inside the component using the <code>template</code> option or in a <code>&lt;template&gt;</code> element in a <code>.vue</code> file.</p>
+### X-Templates
+
+<p>Another way to define templates is inside of a script element with the type <code>text/x-template</code>, then referencing the template by an id. For example:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/x-template"</span> <span class="attr">id</span>=<span class="string">"hello-world-template"</span>&gt;</span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello hello hello<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'hello-world'</span>, &#123;</span><br><span class="line">  template: <span class="string">'#hello-world-template'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Your x-template needs to be defined outside the DOM element to which Vue is attached.</p>
+<p class="tip">These can be useful for demos with large templates or in extremely small applications, but should otherwise be avoided, because they separate templates from the rest of the component definition.</p>
+## Controlling Updates
+
+<p>Thanks to Vue’s Reactivity system, it always knows when to update (if you use it correctly). There are edge cases, however, when you might want to force an update, despite the fact that no reactive data has changed. Then there are other cases when you might want to prevent unnecessary updates.</p>
+<h3 id="Forcing-an-Update"><a href="#Forcing-an-Update" class="headerlink" title="Forcing an Update"></a>Forcing an Update</h3><p class="tip">If you find yourself needing to force an update in Vue, in 99.99% of cases, you've made a mistake somewhere.</p>
+You may not have accounted for change detection caveats [with arrays](https://vuejs.org/v2/guide/list.html#Caveats) or [objects](https://vuejs.org/v2/guide/list.html#Object-Change-Detection-Caveats), or you may be relying on state that isn't tracked by Vue's reactivity system, e.g. with `data`.
+
+<p>However, if you’ve ruled out the above and find yourself in this extremely rare situation of having to manually force an update, you can do so with <a href="../api/#vm-forceUpdate"><code>$forceUpdate</code></a>.</p>
+<h3 id="Cheap-Static-Components-with-v-once"><a href="#Cheap-Static-Components-with-v-once" class="headerlink" title="Cheap Static Components with v-once"></a>Cheap Static Components with <code>v-once</code></h3><p>Rendering plain HTML elements is very fast in Vue, but sometimes you might have a component that contains <strong>a lot</strong> of static content. In these cases, you can ensure that it’s only evaluated once and then cached by adding the <code>v-once</code> directive to the root element, like this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'terms-of-service'</span>, &#123;</span><br><span class="line">  template: <span class="string">`</span></span><br><span class="line"><span class="string">    &lt;div v-once&gt;</span></span><br><span class="line"><span class="string">      &lt;h1&gt;Terms of Service&lt;/h1&gt;</span></span><br><span class="line"><span class="string">      ... a lot of static content ...</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">  `</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p class="tip">Once again, try not to overuse this pattern. While convenient in those rare cases when you have to render a lot of static content, it's simply not necessary unless you actually notice slow rendering -- plus, it could cause a lot of confusion later. For example, imagine another developer who's not familiar with <code>v-once</code> or simply misses it in the template. They might spend hours trying to figure out why the template isn't updating correctly.</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/vue/comparison/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    다른 프레임워크와의 비교
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/vue/components-slots/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">슬롯(Slots)</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="typescript-study/typescript-study.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2020 
+            <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

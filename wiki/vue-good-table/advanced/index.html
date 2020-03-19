@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <title>Customizations | Vue Search</title>
+    
+    
+        <meta name="keywords" content="Vue-good-table">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="CustomizationsCustom Row TemplateSometimes you might want to customize exactly how rows are displayed in a table. Vue-good-table also supports dynamic td templates where you dictate how to display the">
+<meta name="keywords" content="Vue-good-table">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Customizations">
+<meta property="og:url" content="https://vue-guide.github.io/wiki/vue-good-table/advanced/index.html">
+<meta property="og:site_name" content="Vue Search">
+<meta property="og:description" content="CustomizationsCustom Row TemplateSometimes you might want to customize exactly how rows are displayed in a table. Vue-good-table also supports dynamic td templates where you dictate how to display the">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2020-03-19T01:57:29.900Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Customizations">
+<meta name="twitter:description" content="CustomizationsCustom Row TemplateSometimes you might want to customize exactly how rows are displayed in a table. Vue-good-table also supports dynamic td templates where you dictate how to display the">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="Vue Search" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+</head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Vue Search</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Vue-good-table
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vue-good-table/README/">Getting Started</a></li>  <li class="file"><a href="/wiki/vue-good-table/configuration/">Table Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/table-events/">Table Events</a></li>  <li class="file"><a href="/wiki/vue-good-table/search-options/">Search Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/sort-options/">Sort Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/pagination-options/">Pagination Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/column-options/">Column Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/column-filter-options/">Column Filter Options</a></li>  <li class="file active"><a href="/wiki/vue-good-table/advanced/">Customizations</a></li>  <li class="file"><a href="/wiki/vue-good-table/checkbox-table/">Checkbox Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/grouped-table/">Grouped Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/remote-workflow/">Server Side Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/style-configuration/">Themes</a></li>  <li class="file"><a href="/wiki/vue-good-table/style-classes/">Style Classes</a></li>  <li class="file"><a href="/wiki/vue-good-table/sass/">Sass</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vue/index/">시작하기</a></li>  <li class="file"><a href="/wiki/vue/installation/">설치방법</a></li>  <li class="file"><a href="/wiki/vue/instance/">Vue 인스턴스</a></li>  <li class="file"><a href="/wiki/vue/syntax/">템플릿 문법</a></li>  <li class="file"><a href="/wiki/vue/computed/">computed와 watch</a></li>  <li class="file"><a href="/wiki/vue/class-and-style/">클래스와 스타일 바인딩</a></li>  <li class="file"><a href="/wiki/vue/conditional/">조건부 렌더링</a></li>  <li class="file"><a href="/wiki/vue/list/">리스트 렌더링</a></li>  <li class="file"><a href="/wiki/vue/events/">이벤트 핸들링</a></li>  <li class="file"><a href="/wiki/vue/forms/">폼 입력 바인딩</a></li>  <li class="file"><a href="/wiki/vue/components/">컴포넌트</a></li>  <li class="file"><a href="/wiki/vue/transitions/">진입/진출 그리고 리스트 트랜지션</a></li>  <li class="file"><a href="/wiki/vue/components-registration/">컴포넌트 등록</a></li>  <li class="file"><a href="/wiki/vue/transitioning-state/">상태 트랜지션</a></li>  <li class="file"><a href="/wiki/vue/components-props/">Props</a></li>  <li class="file"><a href="/wiki/vue/components-custom-events/">커스텀 이벤트</a></li>  <li class="file"><a href="/wiki/vue/components-slots/">슬롯(Slots)</a></li>  <li class="file"><a href="/wiki/vue/components-edge-cases/">Handling Edge Cases</a></li>  <li class="file"><a href="/wiki/vue/style-guide/">Style Guide</a></li>  <li class="file"><a href="/wiki/vue/comparison/">다른 프레임워크와의 비교</a></li>  <li class="file"><a href="/wiki/vue/mixins/">믹스인</a></li>  <li class="file"><a href="/wiki/vue/custom-directive/">사용자 지정 디렉티브</a></li>  <li class="file"><a href="/wiki/vue/render-function/">Render Functions & JSX</a></li>  <li class="file"><a href="/wiki/vue/plugins/">플러그인</a></li>  <li class="file"><a href="/wiki/vue/filters/">필터</a></li>  <li class="file"><a href="/wiki/vue/single-file-components/">싱글 파일 컴포넌트</a></li>  <li class="file"><a href="/wiki/vue/typescript/">TypeScript 지원</a></li>  <li class="file"><a href="/wiki/vue/unit-testing/">단위 테스팅</a></li>  <li class="file"><a href="/wiki/vue/deployment/">프로덕션 배포 팁</a></li>  <li class="file"><a href="/wiki/vue/routing/">라우팅</a></li>  <li class="file"><a href="/wiki/vue/state-management/">상태 관리</a></li>  <li class="file"><a href="/wiki/vue/ssr/">서버사이드 렌더링</a></li>  <li class="file"><a href="/wiki/vue/security/">Security</a></li>  <li class="file"><a href="/wiki/vue/reactivity/">반응형에 대해 깊이 알아보기</a></li>  <li class="file"><a href="/wiki/vue/migration/">Vue 1.x에서 마이그레이션</a></li>  <li class="file"><a href="/wiki/vue/migration-vue-router/">Vue Router 0.7.x으로 부터 마이그레이션</a></li>  <li class="file"><a href="/wiki/vue/migration-vuex/">Vuex 0.6.x에서 1.0로 마이그레이션</a></li>  <li class="file"><a href="/wiki/vue/team/">팀 구성원 만나기</a></li>  <li class="file"><a href="/wiki/vue/join/">Vue.js 커뮤니티에 참여하세요!</a></li>  <li class="file"><a href="/wiki/vue/components-dynamic-async/">동적 & 비동기 컴포넌트</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vuex/intro/">Vuex가 무엇인가요?</a></li>  <li class="file"><a href="/wiki/vuex/getting-started/">시작하기</a></li>  <li class="file"><a href="/wiki/vuex/hot-reload/">핫 리로딩</a></li>  <li class="file"><a href="/wiki/vuex/installation/">설치</a></li>  <li class="file"><a href="/wiki/vuex/modules/">모듈</a></li>  <li class="file"><a href="/wiki/vuex/mutations/">변이</a></li>  <li class="file"><a href="/wiki/vuex/getters/">Getters</a></li>  <li class="file"><a href="/wiki/vuex/api/">API 레퍼런스</a></li>  <li class="file"><a href="/wiki/vuex/actions/">액션</a></li>  <li class="file"><a href="/wiki/vuex/forms/">폼 핸들링</a></li>  <li class="file"><a href="/wiki/vuex/plugins/">플러그인</a></li>  <li class="file"><a href="/wiki/vuex/state/">상태</a></li>  <li class="file"><a href="/wiki/vuex/strict/">Strict 모드</a></li>  <li class="file"><a href="/wiki/vuex/structure/">애플리케이션 구조</a></li>  <li class="file"><a href="/wiki/vuex/testing/">테스팅</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-vue-good-table/advanced" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Vue-good-table/">Vue-good-table</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue-good-table/">Vue-good-table</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/vue-good-table/advanced/">
+            <time datetime="2020-03-08T10:04:47.000Z" itemprop="datePublished">2020-03-08</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/vue-good-table/advanced.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/vue-good-table/advanced.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/vue-good-table/advanced.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Customizations
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Customizations"><span class="toc-number">1.</span> <span class="toc-text">Customizations</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Custom-Row-Template"><span class="toc-number">1.1.</span> <span class="toc-text">Custom Row Template</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Result"><span class="toc-number">1.1.1.</span> <span class="toc-text">Result</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Adding-custom-columns"><span class="toc-number">1.2.</span> <span class="toc-text">Adding custom columns</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Result-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">Result</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Custom-column-headers"><span class="toc-number">1.3.</span> <span class="toc-text">Custom column headers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Custom-pagination"><span class="toc-number">1.4.</span> <span class="toc-text">Custom pagination</span></a></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <h1 id="Customizations"><a href="#Customizations" class="headerlink" title="Customizations"></a>Customizations</h1><h2 id="Custom-Row-Template"><a href="#Custom-Row-Template" class="headerlink" title="Custom Row Template"></a>Custom Row Template</h2><p>Sometimes you might want to customize exactly how rows are displayed in a table. Vue-good-table also supports dynamic td templates where you dictate how to display the cells. Example:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">vue-good-table</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:columns</span>=<span class="string">"columns"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:rows</span>=<span class="string">"rows"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">slot</span>=<span class="string">"table-row"</span> <span class="attr">slot-scope</span>=<span class="string">"props"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"props.column.field == 'age'"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">"font-weight: bold; color: blue;"</span>&gt;</span>&#123;&#123;props.row.age&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">      &#123;&#123;props.formattedRow[props.column.field]&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">vue-good-table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h3><custom-row>
+
+<p>::: tip NOTE</p>
+<ul>
+<li>The original row object can be accessed via <code>props.row</code></li>
+<li>The currently displayed table row index can be accessed via <code>props.index</code> . </li>
+<li>The original row index can be accessed via <code>props.row.originalIndex</code>. You can then access the original row object by using <code>rows[props.row.originalIndex]</code>.</li>
+<li>The column object can be accessed via <code>props.column</code></li>
+<li>You can access the formatted row data (for example - formatted date) via <code>props.formattedRow</code><br>:::</li>
+</ul>
+<h2 id="Adding-custom-columns"><a href="#Adding-custom-columns" class="headerlink" title="Adding custom columns"></a>Adding custom columns</h2><p>Sometimes you might want to add columns to the table that are not part of your row data. Maybe before or after the other columns. </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">vue-good-table</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:columns</span>=<span class="string">"columns"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:rows</span>=<span class="string">"rows"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">slot</span>=<span class="string">"table-row"</span> <span class="attr">slot-scope</span>=<span class="string">"props"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"props.column.field == 'before'"</span>&gt;</span></span><br><span class="line">      before</span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-else-if</span>=<span class="string">"props.column.field == 'after'"</span>&gt;</span></span><br><span class="line">      after</span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">      &#123;&#123;props.formattedRow[props.column.field]&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">vue-good-table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>keep in mind that you’ll need to add the custom columns to your column definition.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  label: <span class="string">'Before'</span>,</span><br><span class="line">  field: <span class="string">'before'</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  label: <span class="string">'After'</span>,</span><br><span class="line">  field: <span class="string">'after'</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="Result-1"><a href="#Result-1" class="headerlink" title="Result"></a>Result</h3><before-after-columns>
+
+<h2 id="Custom-column-headers"><a href="#Custom-column-headers" class="headerlink" title="Custom column headers"></a>Custom column headers</h2><p>Sometimes you might want to customize column headers. You can do that in the following way</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">vue-good-table</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:columns</span>=<span class="string">"columns"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:rows</span>=<span class="string">"rows"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">slot</span>=<span class="string">"table-column"</span> <span class="attr">slot-scope</span>=<span class="string">"props"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"props.column.label =='Name'"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-address-book"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span> &#123;&#123;props.column.label&#125;&#125;</span><br><span class="line">     <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">        &#123;&#123;props.column.label&#125;&#125;</span><br><span class="line">     <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">vue-good-table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Custom-pagination"><a href="#Custom-pagination" class="headerlink" title="Custom pagination"></a>Custom pagination</h2><p>Sometimes you might want to customize the pagination. You can do that in the following way:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">vue-good-table</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:columns</span>=<span class="string">"columns"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:rows</span>=<span class="string">"rows"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">:pagination-options</span>=<span class="string">"&#123;enabled: true&#125;"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">slot</span>=<span class="string">"pagination-bottom"</span> <span class="attr">slot-scope</span>=<span class="string">"props"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">custom-pagination</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:total</span>=<span class="string">"props.total"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:pageChanged</span>=<span class="string">"props.pageChanged"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:perPageChanged</span>=<span class="string">"props.perPageChanged"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">custom-pagination</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">vue-good-table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// within your &lt;custom-pagination&gt; component</span></span><br><span class="line">props: &#123;</span><br><span class="line">  pageChanged: &#123;</span><br><span class="line">    type: <span class="built_in">Function</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  perPageChanged: &#123;</span><br><span class="line">    type: <span class="built_in">Function</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// and...</span></span><br><span class="line">methods: &#123;</span><br><span class="line">  customPageChange(customCurrentPage) &#123;</span><br><span class="line">    <span class="keyword">this</span>.pageChanged(&#123;<span class="attr">currentPage</span>: customCurrentPage&#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  customPerPageChange(customPerPage) &#123;</span><br><span class="line">    <span class="keyword">this</span>.perPageChanged(&#123;<span class="attr">currentPerPage</span>: customPerPage&#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>::: warning<br>You will have to implement your own pagination system:</p>
+<ul>
+<li>The total number of rows can be accessed via <code>props.total</code></li>
+<li>The function to call when the current page has changed can be accessed via <code>props.pageChanged</code>.</li>
+<li>The function to call when the per page value has changed can be accessed via <code>props.perPageChanged</code> .<br>:::</li>
+</ul>
+</before-after-columns></custom-row>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/vue-good-table/checkbox-table/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    Checkbox Table
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/vue-good-table/column-filter-options/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">Column Filter Options</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="typescript-study/typescript-study.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2020 
+            <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

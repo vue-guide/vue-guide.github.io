@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <title>Vue Search</title>
+    
+    
+        <meta name="keywords" content="Javascript">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="For Memory">
+<meta name="keywords" content="Javascript">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vue Search">
+<meta property="og:url" content="https://vue-guide.github.io/page/4/index.html">
+<meta property="og:site_name" content="Vue Search">
+<meta property="og:description" content="For Memory">
+<meta property="og:locale" content="ko">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue Search">
+<meta name="twitter:description" content="For Memory">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="Vue Search" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+</head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Vue Search</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue-good-table
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vue-good-table/README/">Getting Started</a></li>  <li class="file"><a href="/wiki/vue-good-table/configuration/">Table Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/table-events/">Table Events</a></li>  <li class="file"><a href="/wiki/vue-good-table/search-options/">Search Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/sort-options/">Sort Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/pagination-options/">Pagination Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/column-options/">Column Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/column-filter-options/">Column Filter Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/advanced/">Customizations</a></li>  <li class="file"><a href="/wiki/vue-good-table/checkbox-table/">Checkbox Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/grouped-table/">Grouped Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/remote-workflow/">Server Side Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/style-configuration/">Themes</a></li>  <li class="file"><a href="/wiki/vue-good-table/style-classes/">Style Classes</a></li>  <li class="file"><a href="/wiki/vue-good-table/sass/">Sass</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vue/index/">시작하기</a></li>  <li class="file"><a href="/wiki/vue/installation/">설치방법</a></li>  <li class="file"><a href="/wiki/vue/instance/">Vue 인스턴스</a></li>  <li class="file"><a href="/wiki/vue/syntax/">템플릿 문법</a></li>  <li class="file"><a href="/wiki/vue/computed/">computed와 watch</a></li>  <li class="file"><a href="/wiki/vue/class-and-style/">클래스와 스타일 바인딩</a></li>  <li class="file"><a href="/wiki/vue/conditional/">조건부 렌더링</a></li>  <li class="file"><a href="/wiki/vue/list/">리스트 렌더링</a></li>  <li class="file"><a href="/wiki/vue/events/">이벤트 핸들링</a></li>  <li class="file"><a href="/wiki/vue/forms/">폼 입력 바인딩</a></li>  <li class="file"><a href="/wiki/vue/components/">컴포넌트</a></li>  <li class="file"><a href="/wiki/vue/transitions/">진입/진출 그리고 리스트 트랜지션</a></li>  <li class="file"><a href="/wiki/vue/components-registration/">컴포넌트 등록</a></li>  <li class="file"><a href="/wiki/vue/transitioning-state/">상태 트랜지션</a></li>  <li class="file"><a href="/wiki/vue/components-props/">Props</a></li>  <li class="file"><a href="/wiki/vue/components-custom-events/">커스텀 이벤트</a></li>  <li class="file"><a href="/wiki/vue/components-slots/">슬롯(Slots)</a></li>  <li class="file"><a href="/wiki/vue/components-edge-cases/">Handling Edge Cases</a></li>  <li class="file"><a href="/wiki/vue/style-guide/">Style Guide</a></li>  <li class="file"><a href="/wiki/vue/comparison/">다른 프레임워크와의 비교</a></li>  <li class="file"><a href="/wiki/vue/mixins/">믹스인</a></li>  <li class="file"><a href="/wiki/vue/custom-directive/">사용자 지정 디렉티브</a></li>  <li class="file"><a href="/wiki/vue/render-function/">Render Functions & JSX</a></li>  <li class="file"><a href="/wiki/vue/plugins/">플러그인</a></li>  <li class="file"><a href="/wiki/vue/filters/">필터</a></li>  <li class="file"><a href="/wiki/vue/single-file-components/">싱글 파일 컴포넌트</a></li>  <li class="file"><a href="/wiki/vue/typescript/">TypeScript 지원</a></li>  <li class="file"><a href="/wiki/vue/unit-testing/">단위 테스팅</a></li>  <li class="file"><a href="/wiki/vue/deployment/">프로덕션 배포 팁</a></li>  <li class="file"><a href="/wiki/vue/routing/">라우팅</a></li>  <li class="file"><a href="/wiki/vue/state-management/">상태 관리</a></li>  <li class="file"><a href="/wiki/vue/ssr/">서버사이드 렌더링</a></li>  <li class="file"><a href="/wiki/vue/security/">Security</a></li>  <li class="file"><a href="/wiki/vue/reactivity/">반응형에 대해 깊이 알아보기</a></li>  <li class="file"><a href="/wiki/vue/migration/">Vue 1.x에서 마이그레이션</a></li>  <li class="file"><a href="/wiki/vue/migration-vue-router/">Vue Router 0.7.x으로 부터 마이그레이션</a></li>  <li class="file"><a href="/wiki/vue/migration-vuex/">Vuex 0.6.x에서 1.0로 마이그레이션</a></li>  <li class="file"><a href="/wiki/vue/team/">팀 구성원 만나기</a></li>  <li class="file"><a href="/wiki/vue/join/">Vue.js 커뮤니티에 참여하세요!</a></li>  <li class="file"><a href="/wiki/vue/components-dynamic-async/">동적 & 비동기 컴포넌트</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vuex/intro/">Vuex가 무엇인가요?</a></li>  <li class="file"><a href="/wiki/vuex/getting-started/">시작하기</a></li>  <li class="file"><a href="/wiki/vuex/hot-reload/">핫 리로딩</a></li>  <li class="file"><a href="/wiki/vuex/installation/">설치</a></li>  <li class="file"><a href="/wiki/vuex/modules/">모듈</a></li>  <li class="file"><a href="/wiki/vuex/mutations/">변이</a></li>  <li class="file"><a href="/wiki/vuex/getters/">Getters</a></li>  <li class="file"><a href="/wiki/vuex/api/">API 레퍼런스</a></li>  <li class="file"><a href="/wiki/vuex/actions/">액션</a></li>  <li class="file"><a href="/wiki/vuex/forms/">폼 핸들링</a></li>  <li class="file"><a href="/wiki/vuex/plugins/">플러그인</a></li>  <li class="file"><a href="/wiki/vuex/state/">상태</a></li>  <li class="file"><a href="/wiki/vuex/strict/">Strict 모드</a></li>  <li class="file"><a href="/wiki/vuex/structure/">애플리케이션 구조</a></li>  <li class="file"><a href="/wiki/vuex/testing/">테스팅</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main">
+        <article id="post-vuex/getting-started" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Vuex/">Vuex</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Vuex/">Vuex</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/vuex/getting-started/">
+            <time datetime="2019-12-01T10:04:47.000Z" itemprop="datePublished">2019-12-01</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/vuex/getting-started.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/vuex/getting-started.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/vuex/getting-started.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/wiki/vuex/getting-started/">시작하기</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <!-- Bug Exist: When start table html, crash main page. -->
+                    <p><h1 id="시작하기"><a href="#시작하기" class="headerlink" title="시작하기"></a>시작하기</h1><p>모든 Vuex 애플리케이션의 중심에는 <strong>store</strong> 가 있습니다. “저장소”는 기본적으로 애플리케이션 <strong>상태</strong> 를 보유하고있는 컨테이너입니다. Vuex 저장소가 일반 전역 개체와 두 가지 다른 점이 있습니다.</p>
+<ol>
+<li>Vuex store는 반응형 입니다. Vue 컴포넌트는 상태를 검색할 때 저장소의 상태가 변경되면 효율적으로 대응하고 업데이트합니다.</li>
+<li>저장소의 상태를 직접 변경할 수 없습니다. 저장소의 상태를 변경하는 유일한 방법은 명시적인 <strong>커밋을 이용한 변이</strong> 입니다. 이렇게하면 모든 상태에 대한 추적이 가능한 기록이 남을 수 있으며 툴을 사용하여 앱을 더 잘 이해할 수 있습니다.</li>
+</ol><p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/wiki/vuex/getting-started/#more">자세히 보기</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
+        <article id="post-vue/team" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/vue/team/">
+            <time datetime="2019-08-03T10:04:47.000Z" itemprop="datePublished">2019-08-03</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/vue/team.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/vue/team.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/vue/team.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/wiki/vue/team/">팀 구성원 만나기</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <!-- Bug Exist: When start table html, crash main page. -->
+                    <p>
+<script id="vuer-profile-template" type="text/template">
+  <div class="vuer">
+    <div class="avatar">
+      <img v-if="profile.imageUrl"
+        :src="profile.imageUrl"<p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/wiki/vue/team/#more">자세히 보기</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
+        <article id="post-vue/join" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/vue/join/">
+            <time datetime="2019-08-03T10:04:47.000Z" itemprop="datePublished">2019-08-03</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/vue/join.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/vue/join.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/vue/join.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/wiki/vue/join/">Vue.js 커뮤니티에 참여하세요!</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <!-- Bug Exist: When start table html, crash main page. -->
+                    <p><p>Vue의 커뮤니티는 엄청나게 빠르게 성장하고 있습니다. 이 글을 읽는다면 가입 할 준비가 된 것입니다. 정말로 환영합니다!</p>
+<p>이제 커뮤니티가 여러분에게 할 수 있는 일과 여러분이 커뮤니티에 할 수 있는 일 모두 다룰 것 입니다.</p>
+<h2 id="즐길-수-있는-리소스들"><a href="#즐길-수-있는-리소스들" class="headerlink" title="즐길 수 있는 리소스들"></a>즐길 수 있는 리소스들</h2><h3 id="행동강령"><a href="#행동강령" class="headerlink" title="행동강령"></a>행동강령</h3><p>Our <a href="/coc">Code of Conduct</a> is a guide to make it easier to enrich all of us and the technical communities in which we participate.</p>
+<h3 id="지원-받기"><a href="#지원-받기" class="headerlink" title="지원 받기"></a>지원 받기</h3><ul>
+<li><a href="http://forum.vuejs.org/" target="_blank" rel="noopener">Forum</a>: Vue와 생태계에한관한 질문하고 답변을 얻는 가장 좋은 곳 입니다.</li><p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/wiki/vue/join/#more">자세히 보기</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
+        <article id="post-vue/migration-vuex" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/vue/migration-vuex/">
+            <time datetime="2019-07-03T10:04:47.000Z" itemprop="datePublished">2019-07-03</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/vue/migration-vuex.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/vue/migration-vuex.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/vue/migration-vuex.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/wiki/vue/migration-vuex/">Vuex 0.6.x에서 1.0로 마이그레이션</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <!-- Bug Exist: When start table html, crash main page. -->
+                    <p><blockquote>
+<p>Vuex 2.0이 출시되었지만이 가이드에서는 1.0으로의 마이그레이션만 다룹니다. 오타 아닌가요? 또한 Vuex 1.0과 2.0이 동시에 출시 된 것처럼 보입니다. 어떻게 된거죠? Vue 2.0과 호환되는 것은 무엇입니까?</p>
+</blockquote>
+<p>Vuex 1.0 및 2.0:</p>
+<ul><p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/wiki/vue/migration-vuex/#more">자세히 보기</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
+        <article id="post-vue/migration-vue-router" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/vue/migration-vue-router/">
+            <time datetime="2019-07-02T10:04:47.000Z" itemprop="datePublished">2019-07-02</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/vue/migration-vue-router.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/vue/migration-vue-router.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/vue/migration-vue-router.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/wiki/vue/migration-vue-router/">Vue Router 0.7.x으로 부터 마이그레이션</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <!-- Bug Exist: When start table html, crash main page. -->
+                    <p><blockquote>
+<p>Vue 2는 Vue 2와 호환되므로 Vue를 업데이트하는 경우 Vue Router도 함께 업데이트해야합니다. 이것이 주요 문서에서 마이그레이션 경로에 대한 세부 정보를 포함시킨 이유입니다. 새 Vue Router 사용에 대한 전체 안내서는 <a href="http://router.vuejs.org/en/" target="_blank" rel="noopener">Vue Router 문서</a>를 참조하십시오.</p>
+</blockquote>
+<h2 id="라우터-초기화"><a href="#라우터-초기화" class="headerlink" title="라우터 초기화"></a>라우터 초기화</h2><h3 id="router-start-변경"><a href="#router-start-변경" class="headerlink" title="router.start 변경"></a><code>router.start</code> <sup>변경</sup></h3><p>Vue Router로 앱을 초기화하는 특별한 API는 더 이상 존재하지 않습니다. 그 대신에 다음을 의미합니다:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router.start(&#123;</span><br><span class="line">  template: <span class="string">'&lt;router-view&gt;&lt;/router-view&gt;'</span></span><br><span class="line">&#125;, <span class="string">'#app'</span>)</span><br></pre></td></tr></table></figure><p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/wiki/vue/migration-vue-router/#more">자세히 보기</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
+        <article id="post-vue/migration" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/vue/migration/">
+            <time datetime="2019-07-01T10:04:47.000Z" itemprop="datePublished">2019-07-01</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/vue/migration.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/vue/migration.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/vue/migration.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/wiki/vue/migration/">Vue 1.x에서 마이그레이션</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <!-- Bug Exist: When start table html, crash main page. -->
+                    <p><h2 id="FAQ"><a href="#FAQ" class="headerlink" title="FAQ"></a>FAQ</h2><blockquote>
+<p> 우와… - 이 페이지는 매우 깁니다! 그 말은 2.0이 완전히 다르다는 것을 의미합니까? 기초를 다시 배워야 할 것이며, 마이그레이션은 실제로 불가능한 것입니까?</p>
+</blockquote>
+<p>질문해 주어서 기쁩니다. 대답은 ‘아니오’ 입니다. API의 약 90%가 동일하고 핵심 개념이 변경되지 않았습니다. 매우 자세한 설명을 제공하고 많은 예제를 포함하기 때문에 문서의 길이가 깁니다. 안심하십시오. <strong>이 것은 위에서 아래로 읽어야하는 것이 아닙니다!</strong></p>
+<blockquote><p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/wiki/vue/migration/#more">자세히 보기</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
+        <article id="post-vue/reactivity" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/vue/reactivity/">
+            <time datetime="2019-06-01T10:04:47.000Z" itemprop="datePublished">2019-06-01</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/vue/reactivity.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/vue/reactivity.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/vue/reactivity.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/wiki/vue/reactivity/">반응형에 대해 깊이 알아보기</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <!-- Bug Exist: When start table html, crash main page. -->
+                    <p><p>이제 조금 더 깊게 알아볼 차례입니다. Vue의 가장 두드러진 특징 중 하나는 눈에 잘 띄지 않는 반응형 시스템입니다. 모델은 단순한 JavaScript 객체입니다. 수정하면 화면이 갱신됩니다. 스테이트 관리를 간단하고 직관적으로 만들어주지만, 몇 가지 흔한 함정을 피하려면 어떻게 작동하는지 이해하는 것도 중요합니다. 이 섹션에서는 Vue의 반응형 시스템의 세부사항을 다룹니다.</p>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/advanced-components/build-a-reactivity-system" target="_blank" rel="sponsored noopener" title="Vue Reactivity">Watch a video explanation on Vue Mastery</a></div>
+## 변경 내용을 추적하는 방법
+
+<p>Vue 인스턴스에 JavaScript 객체를 <code>data</code> 옵션으로 전달하면 Vue는 모든 속성에 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="noopener">Object.defineProperty</a>를 사용하여 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects#Defining_getters_and_setters" target="_blank" rel="noopener">getter/setters</a>로 변환합니다. 이는 Vue가 ES5를 사용할 수 없는 IE8 이하를 지원하지 않는 이유입니다.</p><p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/wiki/vue/reactivity/#more">자세히 보기</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
+        <article id="post-vue/security" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/vue/security/">
+            <time datetime="2019-05-04T10:04:47.000Z" itemprop="datePublished">2019-05-04</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/vue/security.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/vue/security.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/vue/security.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/wiki/vue/security/">Security</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <!-- Bug Exist: When start table html, crash main page. -->
+                    <p><h2 id="Reporting-Vulnerabilities"><a href="#Reporting-Vulnerabilities" class="headerlink" title="Reporting Vulnerabilities"></a>Reporting Vulnerabilities</h2><p>When a vulnerability is reported, it immediately becomes our top concern, with a full-time contributor dropping everything to work on it. To report a vulnerability, please email <a href="mailto:vuejs.org@gmail.com" target="_blank" rel="noopener">vuejs.org@gmail.com</a>.</p>
+<p>While the discovery of new vulnerabilities is rare, we also recommend always using the latest versions of Vue and its official companion libraries to ensure your application remains as secure as possible.</p>
+<h2 id="What-Vue-Does-to-Protect-You"><a href="#What-Vue-Does-to-Protect-You" class="headerlink" title="What Vue Does to Protect You"></a>What Vue Does to Protect You</h2><h3 id="HTML-content"><a href="#HTML-content" class="headerlink" title="HTML content"></a>HTML content</h3><p>Whether using templates or render functions, content is automatically escaped. That means in this template:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;&#123; userProvidedString &#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/wiki/vue/security/#more">자세히 보기</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
+        <article id="post-vue/ssr" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/vue/ssr/">
+            <time datetime="2019-05-03T10:04:47.000Z" itemprop="datePublished">2019-05-03</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/vue/ssr.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/vue/ssr.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/vue/ssr.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/wiki/vue/ssr/">서버사이드 렌더링</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+            
+        
+        
+            <h2 id="완전한-서버사이드-렌더링-SSR-가이드"><a href="#완전한-서버사이드-렌더링-SSR-가이드" class="headerlink" title="완전한 서버사이드 렌더링(SSR) 가이드"></a>완전한 서버사이드 렌더링(SSR) 가이드</h2><p>서버사이드 렌더링을 사용하는 Vue 애플리케이션을 만들기 위한 독립적인 가이드를 만들었습니다. 이는 클라이언트 Vue와 서버 측 Node.js 개발 및 웹팩에 익숙한 사람들을 위한 매우 깊이 있는 가이드입니다. <a href="https://ssr.vuejs.org/" target="_blank" rel="noopener">ssr.vuejs.org</a>에서 확인하세요.</p>
+<h2 id="Nuxt-js"><a href="#Nuxt-js" class="headerlink" title="Nuxt.js"></a>Nuxt.js</h2><p>배포 준비 완료 상태의 서버측 렌더링을 사용하는 애플리케이션을 올바르게 구성하는 것은 어려운 작업입니다. 다행히 이 모든 것을보다 쉽게하기 위한 훌륭한 커뮤니티 프로젝트가 있습니다. <a href="https://nuxtjs.org/" target="_blank" rel="noopener">Nuxt.js</a>입니다. Nuxt.js는 Vue 생태계 위에 만들어진 상위 수준의 범용 Vue 애플리케이션을 작성하는 데 매우 간소화 된 개발 환경을 제공합니다. 더 나아가 정적 사이트 생성기(단일 파일 Vue 컴포넌트로 작성된 페이지 포함)로 사용할 수도 있습니다. 한번 시도해보세요</p>
+<h2 id="Quasar-Framework-SSR-PWA"><a href="#Quasar-Framework-SSR-PWA" class="headerlink" title="Quasar Framework SSR + PWA"></a>Quasar Framework SSR + PWA</h2><p><a href="https://quasar.dev" target="_blank" rel="noopener">Quasar Framework</a> will generate an SSR app (with optional PWA handoff) that leverages its best-in-class build system, sensible configuration and developer extensibility to make designing and building your idea a breeze. With over one hundred specific “Material Design 2.0”-compliant components, you can decide which ones to execute on the server, which are available in the browser - and even manage the <code>&lt;meta&gt;</code> tags of your site. Quasar is a node.js and webpack based development environment that supercharges and streamlines rapid development of SPA, PWA, SSR, Electron and Cordova apps - all from one codebase.</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
+        <article id="post-vue/state-management" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/vue/state-management/">
+            <time datetime="2019-05-02T10:04:47.000Z" itemprop="datePublished">2019-05-02</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/vue/state-management.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/vue/state-management.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/vue/state-management.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/wiki/vue/state-management/">상태 관리</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <!-- Bug Exist: When start table html, crash main page. -->
+                    <p><h2 id="공식-Flux-유사-구현"><a href="#공식-Flux-유사-구현" class="headerlink" title="공식 Flux-유사 구현"></a>공식 Flux-유사 구현</h2><p>대규모 응용 프로그램은 여러 컴포넌트에 분산되어있는 여러 상태와 그 상호 작용으로 인해 복잡해집니다. 이 문제를 해결하기 위해 Vue는 Elm에서 영감을 얻은 상태 관리 라이브러리 인 <a href="https://github.com/vuejs/vuex" target="_blank" rel="noopener">vuex</a>를 제공합니다. 또한 <a href="https://github.com/vuejs/vue-devtools" target="_blank" rel="noopener">vue-devtools</a>를 사용한다면 설정에 따로 시간을 보내지 않아도 <a href="https://raw.githubusercontent.com/vuejs/vue-devtools/master/media/demo.gif" target="_blank" rel="noopener">시간여행 디버깅</a>을 사용할 수 있습니다.</p>
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/mastering-vuex/intro-to-vuex/" target="_blank" rel="sponsored noopener" title="Vuex Tutorial">Watch a video explanation on Vue Mastery</a></div>
+### React 개발자를 위한 안내
+
+<p>만약 당신이 React로 부터 왔다면, vuex가 그 생태계에서 가장 인기있는 Flux 구현 인 <a href="https://github.com/reactjs/redux" target="_blank" rel="noopener">redux</a>와 어떻게 비교되는지 궁금할 것입니다. Redux는 실제로 뷰 레이어(view-layer)에 무관하므로 몇 가지 <a href="https://github.com/egoist/revue" target="_blank" rel="noopener">간단한 바인딩</a>을 해준다면 Vue에서도 Redux를 쉽게 사용할 수 있습니다. Vuex가 Redux와 다른 점이라면 Vue app에 대해서 _알고 있다_는 점입니다. 이를 통해 더 직관적인 API와 향상된 개발경험을 Vue에 통합할 수 있습니다.</p><p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/wiki/vue/state-management/#more">자세히 보기</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
+        <nav id="page-nav">
+        <a class="extend prev" rel="prev" href="/page/3/">&laquo; 이전</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">다음 &raquo;</a>
+        </nav>
+    
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2020 
+            <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

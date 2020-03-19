@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <title>설치방법 | Vue Search</title>
+    
+    
+        <meta name="keywords" content="Vue.js">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="호환성 정보Vue는 ECMAScript 5 기능을 사용하기 때문에 IE8 이하 버전을 지원하지 않습니다. 하지만 모든 ECMAScript 5 호환 브라우저를 지원합니다 릴리즈 노트최신 안정 버전:  각 버전에 대한 자세한 릴리즈 노트는 GitHub에서 보실 수 있습니다. Vue DevtoolsVue를 사용할 때, 브라우저에 Vue Devtools를 설치 하">
+<meta name="keywords" content="Vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="설치방법">
+<meta property="og:url" content="https://vue-guide.github.io/wiki/vue/installation/index.html">
+<meta property="og:site_name" content="Vue Search">
+<meta property="og:description" content="호환성 정보Vue는 ECMAScript 5 기능을 사용하기 때문에 IE8 이하 버전을 지원하지 않습니다. 하지만 모든 ECMAScript 5 호환 브라우저를 지원합니다 릴리즈 노트최신 안정 버전:  각 버전에 대한 자세한 릴리즈 노트는 GitHub에서 보실 수 있습니다. Vue DevtoolsVue를 사용할 때, 브라우저에 Vue Devtools를 설치 하">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2020-03-19T01:48:23.924Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="설치방법">
+<meta name="twitter:description" content="호환성 정보Vue는 ECMAScript 5 기능을 사용하기 때문에 IE8 이하 버전을 지원하지 않습니다. 하지만 모든 ECMAScript 5 호환 브라우저를 지원합니다 릴리즈 노트최신 안정 버전:  각 버전에 대한 자세한 릴리즈 노트는 GitHub에서 보실 수 있습니다. Vue DevtoolsVue를 사용할 때, 브라우저에 Vue Devtools를 설치 하">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="Vue Search" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+</head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Vue Search</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue-good-table
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vue-good-table/README/">Getting Started</a></li>  <li class="file"><a href="/wiki/vue-good-table/configuration/">Table Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/table-events/">Table Events</a></li>  <li class="file"><a href="/wiki/vue-good-table/search-options/">Search Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/sort-options/">Sort Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/pagination-options/">Pagination Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/column-options/">Column Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/column-filter-options/">Column Filter Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/advanced/">Customizations</a></li>  <li class="file"><a href="/wiki/vue-good-table/checkbox-table/">Checkbox Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/grouped-table/">Grouped Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/remote-workflow/">Server Side Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/style-configuration/">Themes</a></li>  <li class="file"><a href="/wiki/vue-good-table/style-classes/">Style Classes</a></li>  <li class="file"><a href="/wiki/vue-good-table/sass/">Sass</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vue/index/">시작하기</a></li>  <li class="file active"><a href="/wiki/vue/installation/">설치방법</a></li>  <li class="file"><a href="/wiki/vue/instance/">Vue 인스턴스</a></li>  <li class="file"><a href="/wiki/vue/syntax/">템플릿 문법</a></li>  <li class="file"><a href="/wiki/vue/computed/">computed와 watch</a></li>  <li class="file"><a href="/wiki/vue/class-and-style/">클래스와 스타일 바인딩</a></li>  <li class="file"><a href="/wiki/vue/conditional/">조건부 렌더링</a></li>  <li class="file"><a href="/wiki/vue/list/">리스트 렌더링</a></li>  <li class="file"><a href="/wiki/vue/events/">이벤트 핸들링</a></li>  <li class="file"><a href="/wiki/vue/forms/">폼 입력 바인딩</a></li>  <li class="file"><a href="/wiki/vue/components/">컴포넌트</a></li>  <li class="file"><a href="/wiki/vue/transitions/">진입/진출 그리고 리스트 트랜지션</a></li>  <li class="file"><a href="/wiki/vue/components-registration/">컴포넌트 등록</a></li>  <li class="file"><a href="/wiki/vue/transitioning-state/">상태 트랜지션</a></li>  <li class="file"><a href="/wiki/vue/components-props/">Props</a></li>  <li class="file"><a href="/wiki/vue/components-custom-events/">커스텀 이벤트</a></li>  <li class="file"><a href="/wiki/vue/components-slots/">슬롯(Slots)</a></li>  <li class="file"><a href="/wiki/vue/components-edge-cases/">Handling Edge Cases</a></li>  <li class="file"><a href="/wiki/vue/style-guide/">Style Guide</a></li>  <li class="file"><a href="/wiki/vue/comparison/">다른 프레임워크와의 비교</a></li>  <li class="file"><a href="/wiki/vue/mixins/">믹스인</a></li>  <li class="file"><a href="/wiki/vue/custom-directive/">사용자 지정 디렉티브</a></li>  <li class="file"><a href="/wiki/vue/render-function/">Render Functions & JSX</a></li>  <li class="file"><a href="/wiki/vue/plugins/">플러그인</a></li>  <li class="file"><a href="/wiki/vue/filters/">필터</a></li>  <li class="file"><a href="/wiki/vue/single-file-components/">싱글 파일 컴포넌트</a></li>  <li class="file"><a href="/wiki/vue/typescript/">TypeScript 지원</a></li>  <li class="file"><a href="/wiki/vue/unit-testing/">단위 테스팅</a></li>  <li class="file"><a href="/wiki/vue/deployment/">프로덕션 배포 팁</a></li>  <li class="file"><a href="/wiki/vue/routing/">라우팅</a></li>  <li class="file"><a href="/wiki/vue/state-management/">상태 관리</a></li>  <li class="file"><a href="/wiki/vue/ssr/">서버사이드 렌더링</a></li>  <li class="file"><a href="/wiki/vue/security/">Security</a></li>  <li class="file"><a href="/wiki/vue/reactivity/">반응형에 대해 깊이 알아보기</a></li>  <li class="file"><a href="/wiki/vue/migration/">Vue 1.x에서 마이그레이션</a></li>  <li class="file"><a href="/wiki/vue/migration-vue-router/">Vue Router 0.7.x으로 부터 마이그레이션</a></li>  <li class="file"><a href="/wiki/vue/migration-vuex/">Vuex 0.6.x에서 1.0로 마이그레이션</a></li>  <li class="file"><a href="/wiki/vue/team/">팀 구성원 만나기</a></li>  <li class="file"><a href="/wiki/vue/join/">Vue.js 커뮤니티에 참여하세요!</a></li>  <li class="file"><a href="/wiki/vue/components-dynamic-async/">동적 & 비동기 컴포넌트</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vuex/intro/">Vuex가 무엇인가요?</a></li>  <li class="file"><a href="/wiki/vuex/getting-started/">시작하기</a></li>  <li class="file"><a href="/wiki/vuex/hot-reload/">핫 리로딩</a></li>  <li class="file"><a href="/wiki/vuex/installation/">설치</a></li>  <li class="file"><a href="/wiki/vuex/modules/">모듈</a></li>  <li class="file"><a href="/wiki/vuex/mutations/">변이</a></li>  <li class="file"><a href="/wiki/vuex/getters/">Getters</a></li>  <li class="file"><a href="/wiki/vuex/api/">API 레퍼런스</a></li>  <li class="file"><a href="/wiki/vuex/actions/">액션</a></li>  <li class="file"><a href="/wiki/vuex/forms/">폼 핸들링</a></li>  <li class="file"><a href="/wiki/vuex/plugins/">플러그인</a></li>  <li class="file"><a href="/wiki/vuex/state/">상태</a></li>  <li class="file"><a href="/wiki/vuex/strict/">Strict 모드</a></li>  <li class="file"><a href="/wiki/vuex/structure/">애플리케이션 구조</a></li>  <li class="file"><a href="/wiki/vuex/testing/">테스팅</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-vue/installation" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/vue/installation/">
+            <time datetime="2019-01-02T10:04:47.000Z" itemprop="datePublished">2019-01-02</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/vue/installation.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/vue/installation.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/vue/installation.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            설치방법
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#호환성-정보"><span class="toc-number">1.</span> <span class="toc-text">호환성 정보</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#릴리즈-노트"><span class="toc-number">2.</span> <span class="toc-text">릴리즈 노트</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-Devtools"><span class="toc-number"></span> <span class="toc-text">Vue Devtools</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#직접-lt-script-gt-에-추가"><span class="toc-number"></span> <span class="toc-text">직접 &lt;script&gt;에 추가</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CDN"><span class="toc-number">1.</span> <span class="toc-text">CDN</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NPM"><span class="toc-number"></span> <span class="toc-text">NPM</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CLI"><span class="toc-number"></span> <span class="toc-text">CLI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#용어"><span class="toc-number">1.</span> <span class="toc-text">용어</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#런타임-컴파일러와-런타임의-차이"><span class="toc-number">2.</span> <span class="toc-text">런타임 + 컴파일러와 런타임의 차이</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Webpack"><span class="toc-number">2.1.</span> <span class="toc-text">Webpack</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Rollup"><span class="toc-number">2.2.</span> <span class="toc-text">Rollup</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Browserify"><span class="toc-number">2.3.</span> <span class="toc-text">Browserify</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Parcel"><span class="toc-number">2.4.</span> <span class="toc-text">Parcel</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#개발모드와-프로덕션-모드-차이"><span class="toc-number">3.</span> <span class="toc-text">개발모드와 프로덕션 모드 차이</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Webpack-1"><span class="toc-number">3.1.</span> <span class="toc-text">Webpack</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Rollup-1"><span class="toc-number">3.2.</span> <span class="toc-text">Rollup</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Browserify-1"><span class="toc-number">3.3.</span> <span class="toc-text">Browserify</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSP-환경"><span class="toc-number">4.</span> <span class="toc-text">CSP 환경</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#개발용-빌드"><span class="toc-number"></span> <span class="toc-text">개발용 빌드</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bower"><span class="toc-number"></span> <span class="toc-text">Bower</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AMD-모듈-로더"><span class="toc-number"></span> <span class="toc-text">AMD 모듈 로더</span></a>
+                </div>
+            
+        
+        
+            <h3 id="호환성-정보"><a href="#호환성-정보" class="headerlink" title="호환성 정보"></a>호환성 정보</h3><p>Vue는 ECMAScript 5 기능을 사용하기 때문에 IE8 이하 버전을 <strong>지원하지 않습니다.</strong> 하지만 모든 <a href="http://caniuse.com/#feat=es5" target="_blank" rel="noopener">ECMAScript 5 호환 브라우저</a>를 지원합니다</p>
+<h3 id="릴리즈-노트"><a href="#릴리즈-노트" class="headerlink" title="릴리즈 노트"></a>릴리즈 노트</h3><p>최신 안정 버전: </p>
+<p>각 버전에 대한 자세한 릴리즈 노트는 <a href="https://github.com/vuejs/vue/releases" target="_blank" rel="noopener">GitHub</a>에서 보실 수 있습니다.</p>
+<h2 id="Vue-Devtools"><a href="#Vue-Devtools" class="headerlink" title="Vue Devtools"></a>Vue Devtools</h2><p>Vue를 사용할 때, 브라우저에 <a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">Vue Devtools</a>를 설치 하는것이 좋습니다. Vue 앱을 보다 사용자 친화적인 인터페이스에서 검사하고 디버깅할 수 있습니다.</p>
+<h2 id="직접-lt-script-gt-에-추가"><a href="#직접-lt-script-gt-에-추가" class="headerlink" title="직접 &lt;script&gt;에 추가"></a>직접 <code>&lt;script&gt;</code>에 추가</h2><p>다운로드 받아 script 태그에 추가하기만 하면 됩니다. <code>Vue</code>는 전역 변수로 등록됩니다.</p>
+<p class="tip">개발 중에는 프로덕션 버전을 사용하지 마십시오. 경고 및 일반적인 실수를 놓칠 수 있습니다! </p>
+<div id="downloads">
+  <a class="button" href="/js/vue.js" download>개발 버전</a><span class="light info">모든 오류 메시지 및 디버그 모드</span>
+
+<p>  <a class="button" href="/js/vue.min.js" download>프로덕션 버전</a><span class="light info">오류 메시지 없음, kb min+gzip</span></p>
+</div>
+
+<h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><p>프로토 타이핑또는 학습 목적이라면, 아래 코드로 최신 버전을 사용할 수 있습니다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>프로덕션 환경인 경우 새 버전에서 예상치 못한 오류를 방지하려면 특정 버전의 빌드 파일을 추가하는것을 추천합니다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue@2.6.0"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>기본 ES 모듈을 사용하는 경우 이를 지원 하는 ES 모듈 호환 빌드 파일도 있습니다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"module"</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'https://cdn.jsdelivr.net/npm/vue@2.6.0/dist/vue.esm.browser.js'</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><a href="https://cdn.jsdelivr.net/npm/vue/" target="_blank" rel="noopener">cdn.jsdelivr.net/npm/vue</a>에서 NPM 패키지의 소스를 둘러볼 수도 있습니다..</p>
+<p>Vue는 <a href="https://unpkg.com/vue@/dist/vue.js" target="_blank" rel="noopener">unpkg</a> 와 <a href="https://cdnjs.cloudflare.com/ajax/libs/vue//vue.js" target="_blank" rel="noopener">cdnjs</a>에서도 사용할 수도 있습니다. (cdnjs는 동기화하는데 시간이 걸리므로 최신버전을 사용하지 못할 수 있습니다).</p>
+<p><a href="#각-다른-빌드간-차이점">각 다른 빌드간 차이점</a>에 대해 읽어보고 배포된 사이트에서는 프로덕션 버젼을 사용하여 <code>vue.js</code>를 <code>vue.min.js</code>로 대체해주세요. 이는 개발 경험보다는 속도에 최적화된 빌드입니다.</p>
+<h2 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h2><p>Vue를 사용하여 대규모 애플리케이션을 구축할 때 NPM를 이용한 설치를 권장하고 있습니다. NPM은 <a href="https://webpack.js.org/" target="_blank" rel="noopener">Webpack</a> 또는 <a href="http://browserify.org/" target="_blank" rel="noopener">Browserify</a>와 같은 모듈 번들러와 잘 작동합니다. Vue는 <a href="single-file-components.html">싱글 파일 컴포넌트</a>를 만들기 위한 도구도 제공합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 최신 안정화 버전</span></span><br><span class="line">$ npm install vue</span><br></pre></td></tr></table></figure>
+
+<h2 id="CLI"><a href="#CLI" class="headerlink" title="CLI"></a>CLI</h2><p>Vue.js는 단일 페이지 애플리케이션를 빠르게 구축할 수 있는 <a href="https://github.com/vuejs/vue-cli" target="_blank" rel="noopener">공식 CLI</a>를 제공합니다. 최신 프론트엔드 워크 플로우를 위해 사전 구성된 빌드 설정을 제공합니다. 핫 리로드, 저장시 린트 체크 및 프로덕션 준비가 된 빌드로 시작하고 실행하는데 몇 분 밖에 걸리지 않습니다. 상세한 내용은 <a href="https://cli.vuejs.org" target="_blank" rel="noopener">Vue CLI 문서</a>에서 찾아보실 수 있습니다.</p>
+<p class="tip">
+CLI는 Node.js 및 관련 빌드 도구에 대한 사전 지식을 전제로 하고 있습니다. Vue 또는 프런트엔드 빌드 도구를 처음 사용하는 경우 CLI를 사용하기 전에 빌드 도구없이 <a href="./">가이드</a>를 읽어 보시기 바랍니다.
+</p>
+
+<div class="vue-mastery"><a href="https://www.vuemastery.com/courses/real-world-vue-js/vue-cli" target="_blank" rel="sponsored noopener" title="Vue CLI">Watch a video explanation on Vue Mastery</a></div>
+## 각 다른 빌드간 차이점
+[NPM 패키지의 `dist/` 디렉터리](https://unpkg.com/vue@latest/dist/)에는 Vue.js의 다양한 빌드가 있습니다. 다음은 그 차이점에 대한 개요입니다.
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>UMD</th>
+<th>CommonJS</th>
+<th>ES Module (for bundlers)</th>
+<th>ES Module (for browsers)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Full</strong></td>
+<td>vue.js</td>
+<td>vue.common.js</td>
+<td>vue.esm.js</td>
+<td>vue.esm.browser.js</td>
+</tr>
+<tr>
+<td><strong>Runtime-only</strong></td>
+<td>vue.runtime.js</td>
+<td>vue.runtime.common.js</td>
+<td>vue.runtime.esm.js</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>Full (production)</strong></td>
+<td>vue.min.js</td>
+<td>-</td>
+<td>-</td>
+<td>vue.esm.browser.min.js</td>
+</tr>
+<tr>
+<td><strong>Runtime-only (production)</strong></td>
+<td>vue.runtime.min.js</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h3 id="용어"><a href="#용어" class="headerlink" title="용어"></a>용어</h3><ul>
+<li><p><strong>Full</strong>: 컴파일러 및 런타임 버전을 모두 포함합니다.</p>
+</li>
+<li><p><strong>Compiler</strong>: 템플릿 문자열을 JavaScript 렌더링 함수로 컴파일하는 코드입니다.</p>
+</li>
+<li><p><strong>Runtime</strong>: Vue 인스턴스 생성, 가상 DOM 렌더링 및 업데이트 등을 담당하는 코드. 기본적으로 모든 컴파일러를 제외한 것입니다.</p>
+</li>
+<li><p><strong><a href="https://github.com/umdjs/umd" target="_blank" rel="noopener">UMD</a></strong>: UMD 빌드는 <code>&lt;script&gt;</code>태그를 통해 브라우저에서 직접 사용할 수 있습니다. <a href="https://unpkg.com/vue" target="_blank" rel="noopener">https://unpkg.com/vue</a>의 Unpkg CDN의 기본 파일은 Runtime + Compiler UMD 빌드 (<code>vue.js</code>)입니다.</p>
+</li>
+<li><p><strong><a href="http://wiki.commonjs.org/wiki/Modules/1.1" target="_blank" rel="noopener">CommonJS</a></strong>: CommonJS 빌드는 <a href="http://browserify.org/" target="_blank" rel="noopener">browserify</a> 또는 <a href="https://webpack.github.io" target="_blank" rel="noopener">webpack 1</a>와 같은 이전 번들과 함께 사용하기 위한 것입니다. 이러한 번들(<code>pkg.main</code>)의 기본 파일은 런타임 전용 CommonJS 빌드(<code>vue.runtime.common.js</code>)입니다.</p>
+</li>
+<li><p><strong><a href="http://exploringjs.com/es6/ch_modules.html" target="_blank" rel="noopener">ES Module</a></strong>: ES 모듈 빌드는 <a href="https://webpack.js.org" target="_blank" rel="noopener">webpack 2</a> 또는 <a href="http://rollupjs.org/" target="_blank" rel="noopener">rollup</a>과 같은 최신 번들과 함께 사용하기 위한 것입니다. 이러한 번들(<code>pkg.module</code>)의 기본 파일은 런타임 전용 ES 모듈 빌드(<code>vue.runtime.esm.js</code>)입니다.</p>
+<ul>
+<li><p>번들러용 ESM:  <a href="https://webpack.js.org" target="_blank" rel="noopener">webpack 2</a> 또는 <a href="https://rollupjs.org/" target="_blank" rel="noopener">Rollup</a>과 같은 최신 번들러와 함께 사용하도록 설계되었습니다. ESM 형식은 정적으로 구문 분석이 가능하도록 설계되었으므로 번들러을 활용하여 트리 쉐이킹을 실행하여 사용하지 않는 코드를 최종 패키지에서 제거할 수 있습니다. 이러한 번들러의 제공되는 기본 파일(<code>pkg.module</code>)은 ES 모듈 빌드의 런타임(<code>vue.runtime.esm.js</code>) 전용입니다.</p>
+</li>
+<li><p>브라우저 ESM (2.6+ 만 해당): 최신 브라우저에서는 <code>&lt;script type=&quot;module&quot;&gt;</code>를 이용하여 직접 가져올 수 있습니다.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="런타임-컴파일러와-런타임의-차이"><a href="#런타임-컴파일러와-런타임의-차이" class="headerlink" title="런타임 + 컴파일러와 런타임의 차이"></a>런타임 + 컴파일러와 런타임의 차이</h3><p>템플릿을 실시간으로 컴파일 해야하는 경우(예 : 문자열을 <code>template</code> 옵션에 전달하거나 템플릿으로 in-DOM HTML을 사용하여 요소에 마운트하는 경우) 컴파일러와 전체 빌드가 필요합니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 아래 내용은 컴파일러가 필요합니다</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  template: <span class="string">'&lt;div&gt;&#123;&#123; hi &#125;&#125;&lt;/div&gt;'</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 아래는 필요하지 않습니다</span></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  render (h) &#123;</span><br><span class="line">    <span class="keyword">return</span> h(<span class="string">'div'</span>, <span class="keyword">this</span>.hi)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>vue-loader</code> 또는 <code>vueify</code>를 사용할 때 <code>*.vue</code> 파일의 템플릿은 빌드시 JavaScript로 미리 컴파일됩니다. 최종 번들에는 실제로 컴파일러가 필요하지 않으므로 런타임 전용 빌드를 사용할 수 있습니다.<br>런타임 전용 빌드는 전체 빌드보다 약 30% 정도 가벼우므로 언제든지 사용할 수 있습니다. 하지만 전체 빌드를 사용하려면 번들러에서 별칭을 구성해야합니다.</p>
+<h4 id="Webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  resolve: &#123;</span><br><span class="line">    alias: &#123;</span><br><span class="line">      <span class="string">'vue$'</span>: <span class="string">'vue/dist/vue.esm.js'</span> <span class="comment">// 'vue/dist/vue.common.js'  webpack 1용 입니다</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Rollup"><a href="#Rollup" class="headerlink" title="Rollup"></a>Rollup</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> alias = <span class="built_in">require</span>(<span class="string">'rollup-plugin-alias'</span>)</span><br><span class="line"></span><br><span class="line">rollup(&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  plugins: [</span><br><span class="line">    alias(&#123;</span><br><span class="line">      <span class="string">'vue'</span>: <span class="built_in">require</span>.resolve(<span class="string">'vue/dist/vue.esm.js'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Browserify"><a href="#Browserify" class="headerlink" title="Browserify"></a>Browserify</h4><p>프로젝트의 <code>package.json</code>에 추가하십시오.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="string">"browser"</span>: &#123;</span><br><span class="line">    <span class="string">"vue"</span>: <span class="string">"vue/dist/vue.common.js"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Parcel"><a href="#Parcel" class="headerlink" title="Parcel"></a>Parcel</h4><p>프로젝트의 <code>package.json</code>에 추가하십시오.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="string">"alias"</span>: &#123;</span><br><span class="line">    <span class="string">"vue"</span> : <span class="string">"./node_modules/vue/dist/vue.common.js"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="개발모드와-프로덕션-모드-차이"><a href="#개발모드와-프로덕션-모드-차이" class="headerlink" title="개발모드와 프로덕션 모드 차이"></a>개발모드와 프로덕션 모드 차이</h3><p>개발/배포 모드는 UMD 빌드에 대해 하드 코딩되어 있습니다. 압축되지 않는 코드는 개발 환경에서 사용되고 압축된 코드는 파일은 프로덕션 환경에서 사용됩니다.</p>
+<p>CommonJS 및 ES 모듈 빌드는 번들러용으로 제작되었으므로 압축된 버전을 제공하지 않습니다. 최종 번들을 직접 압축해야할 책임은 개발자에게 있습니다.</p>
+<p>CommonJS 및 ES 모듈 빌드는 <code>process.env.NODE_ENV</code>에 대한 원시 검사를 유지하여 프로덕션 모드를 결정합니다. 적절한 모드를 사용하여 Vue가 실행될 모드를 제어하려면 이러한 번들 변수를 조작해야 합니다. <code>process.env.NODE_ENV</code>와 문자열 리터럴을 함께 사용하면 UglifyJS와 같은 minifier가 개발 전용 코드 블록을 완전히 삭제하여 최종 파일 크기를 줄일 수 있습니다.</p>
+<h4 id="Webpack-1"><a href="#Webpack-1" class="headerlink" title="Webpack"></a>Webpack</h4><p>Webpack 4+인 경우, <code>mode</code> 옵션을 사용하세요:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  mode: <span class="string">'production'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>하지만, Webpack 3 혹은 이전 버전이라면, <a href="https://webpack.js.org/plugins/define-plugin/" target="_blank" rel="noopener">DefinePlugin</a>을 사용해야합니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line">      <span class="string">'process.env'</span>: &#123;</span><br><span class="line">        NODE_ENV: <span class="built_in">JSON</span>.stringify(<span class="string">'production'</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Rollup-1"><a href="#Rollup-1" class="headerlink" title="Rollup"></a>Rollup</h4><p><a href="https://github.com/rollup/rollup-plugin-replace" target="_blank" rel="noopener">rollup-plugin-replace</a>를 이용하여 다음과 같이 사용하십시오.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> replace = <span class="built_in">require</span>(<span class="string">'rollup-plugin-replace'</span>)</span><br><span class="line"></span><br><span class="line">rollup(&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  plugins: [</span><br><span class="line">    replace(&#123;</span><br><span class="line">      <span class="string">'process.env.NODE_ENV'</span>: <span class="built_in">JSON</span>.stringify(<span class="string">'production'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;).then(...)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Browserify-1"><a href="#Browserify-1" class="headerlink" title="Browserify"></a>Browserify</h4><p>글로벌 <a href="https://github.com/hughsk/envify" target="_blank" rel="noopener">envify</a>을 적용하여 번들러에 적용하십시오.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NODE_ENV=production browserify -g envify -e main.js | uglifyjs -c -m &gt; build.js</span><br></pre></td></tr></table></figure>
+
+<p><a href="deployment.html">배포 관련 팁</a>을 참고하세요.</p>
+<h3 id="CSP-환경"><a href="#CSP-환경" class="headerlink" title="CSP 환경"></a>CSP 환경</h3><p>Chrome 앱과 같은 일부 환경에서는 CSP(컨텐츠 보안 정책)를 적용하여 식을 평가하므로 <code>new Function()</code>을 사용할 수 없습니다. 템플릿의 컴파일은 전체 빌드에 의존하기 때문에 이러한 환경에서는 사용할 수 없습니다.</p>
+<p>반면 런타임 전용 빌드는 CSP와 완전히 호환됩니다. <a href="https://github.com/vuejs-templates/webpack-simple" target="_blank" rel="noopener">Webpack + vue-loader</a> 또는 <a href="https://github.com/vuejs-templates/browserify-simple" target="_blank" rel="noopener">Browserify + vueify</a>로 런타임 전용 빌드를 사용하는 경우 템플릿은 CSP 환경에서 완벽하게 작동하는 <code>render</code> 함수로 미리 컴파일됩니다.</p>
+<h2 id="개발용-빌드"><a href="#개발용-빌드" class="headerlink" title="개발용 빌드"></a>개발용 빌드</h2><p><strong>중요합니다</strong> : Github의 <code>/dist</code> 폴더에 있는 빌드된 파일은 릴리즈 중에만 체크인 됩니다. Github의 최신 코드에서 Vue를 사용하려면 직접 빌드해야 합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/vuejs/vue.git node_modules/vue</span><br><span class="line"><span class="built_in">cd</span> node_modules/vue</span><br><span class="line">npm install</span><br><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+
+<h2 id="Bower"><a href="#Bower" class="headerlink" title="Bower"></a>Bower</h2><p>Bower는 UMD 빌드에서만 사용 가능합니다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 최신 안정판</span></span><br><span class="line">$ bower install vue</span><br></pre></td></tr></table></figure>
+
+<h2 id="AMD-모듈-로더"><a href="#AMD-모듈-로더" class="headerlink" title="AMD 모듈 로더"></a>AMD 모듈 로더</h2><p>모든 UMD 빌드는 AMD 모듈로 직접 사용할 수 있습니다.</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/vue/instance/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    Vue 인스턴스
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/vue/index/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">시작하기</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="typescript-study/typescript-study.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2020 
+            <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

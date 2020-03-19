@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <title>Vue Router 0.7.x으로 부터 마이그레이션 | Vue Search</title>
+    
+    
+        <meta name="keywords" content="Vue.js">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Vue 2는 Vue 2와 호환되므로 Vue를 업데이트하는 경우 Vue Router도 함께 업데이트해야합니다. 이것이 주요 문서에서 마이그레이션 경로에 대한 세부 정보를 포함시킨 이유입니다. 새 Vue Router 사용에 대한 전체 안내서는 Vue Router 문서를 참조하십시오.  라우터 초기화router.start 변경Vue Router로 앱을 초기화하">
+<meta name="keywords" content="Vue.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue Router 0.7.x으로 부터 마이그레이션">
+<meta property="og:url" content="https://vue-guide.github.io/wiki/vue/migration-vue-router/index.html">
+<meta property="og:site_name" content="Vue Search">
+<meta property="og:description" content="Vue 2는 Vue 2와 호환되므로 Vue를 업데이트하는 경우 Vue Router도 함께 업데이트해야합니다. 이것이 주요 문서에서 마이그레이션 경로에 대한 세부 정보를 포함시킨 이유입니다. 새 Vue Router 사용에 대한 전체 안내서는 Vue Router 문서를 참조하십시오.  라우터 초기화router.start 변경Vue Router로 앱을 초기화하">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2020-03-19T01:48:23.926Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue Router 0.7.x으로 부터 마이그레이션">
+<meta name="twitter:description" content="Vue 2는 Vue 2와 호환되므로 Vue를 업데이트하는 경우 Vue Router도 함께 업데이트해야합니다. 이것이 주요 문서에서 마이그레이션 경로에 대한 세부 정보를 포함시킨 이유입니다. 새 Vue Router 사용에 대한 전체 안내서는 Vue Router 문서를 참조하십시오.  라우터 초기화router.start 변경Vue Router로 앱을 초기화하">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="Vue Search" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+</head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">Vue Search</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue-good-table
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vue-good-table/README/">Getting Started</a></li>  <li class="file"><a href="/wiki/vue-good-table/configuration/">Table Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/table-events/">Table Events</a></li>  <li class="file"><a href="/wiki/vue-good-table/search-options/">Search Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/sort-options/">Sort Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/pagination-options/">Pagination Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/column-options/">Column Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/column-filter-options/">Column Filter Options</a></li>  <li class="file"><a href="/wiki/vue-good-table/advanced/">Customizations</a></li>  <li class="file"><a href="/wiki/vue-good-table/checkbox-table/">Checkbox Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/grouped-table/">Grouped Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/remote-workflow/">Server Side Table</a></li>  <li class="file"><a href="/wiki/vue-good-table/style-configuration/">Themes</a></li>  <li class="file"><a href="/wiki/vue-good-table/style-classes/">Style Classes</a></li>  <li class="file"><a href="/wiki/vue-good-table/sass/">Sass</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vue/index/">시작하기</a></li>  <li class="file"><a href="/wiki/vue/installation/">설치방법</a></li>  <li class="file"><a href="/wiki/vue/instance/">Vue 인스턴스</a></li>  <li class="file"><a href="/wiki/vue/syntax/">템플릿 문법</a></li>  <li class="file"><a href="/wiki/vue/computed/">computed와 watch</a></li>  <li class="file"><a href="/wiki/vue/class-and-style/">클래스와 스타일 바인딩</a></li>  <li class="file"><a href="/wiki/vue/conditional/">조건부 렌더링</a></li>  <li class="file"><a href="/wiki/vue/list/">리스트 렌더링</a></li>  <li class="file"><a href="/wiki/vue/events/">이벤트 핸들링</a></li>  <li class="file"><a href="/wiki/vue/forms/">폼 입력 바인딩</a></li>  <li class="file"><a href="/wiki/vue/components/">컴포넌트</a></li>  <li class="file"><a href="/wiki/vue/transitions/">진입/진출 그리고 리스트 트랜지션</a></li>  <li class="file"><a href="/wiki/vue/components-registration/">컴포넌트 등록</a></li>  <li class="file"><a href="/wiki/vue/transitioning-state/">상태 트랜지션</a></li>  <li class="file"><a href="/wiki/vue/components-props/">Props</a></li>  <li class="file"><a href="/wiki/vue/components-custom-events/">커스텀 이벤트</a></li>  <li class="file"><a href="/wiki/vue/components-slots/">슬롯(Slots)</a></li>  <li class="file"><a href="/wiki/vue/components-edge-cases/">Handling Edge Cases</a></li>  <li class="file"><a href="/wiki/vue/style-guide/">Style Guide</a></li>  <li class="file"><a href="/wiki/vue/comparison/">다른 프레임워크와의 비교</a></li>  <li class="file"><a href="/wiki/vue/mixins/">믹스인</a></li>  <li class="file"><a href="/wiki/vue/custom-directive/">사용자 지정 디렉티브</a></li>  <li class="file"><a href="/wiki/vue/render-function/">Render Functions & JSX</a></li>  <li class="file"><a href="/wiki/vue/plugins/">플러그인</a></li>  <li class="file"><a href="/wiki/vue/filters/">필터</a></li>  <li class="file"><a href="/wiki/vue/single-file-components/">싱글 파일 컴포넌트</a></li>  <li class="file"><a href="/wiki/vue/typescript/">TypeScript 지원</a></li>  <li class="file"><a href="/wiki/vue/unit-testing/">단위 테스팅</a></li>  <li class="file"><a href="/wiki/vue/deployment/">프로덕션 배포 팁</a></li>  <li class="file"><a href="/wiki/vue/routing/">라우팅</a></li>  <li class="file"><a href="/wiki/vue/state-management/">상태 관리</a></li>  <li class="file"><a href="/wiki/vue/ssr/">서버사이드 렌더링</a></li>  <li class="file"><a href="/wiki/vue/security/">Security</a></li>  <li class="file"><a href="/wiki/vue/reactivity/">반응형에 대해 깊이 알아보기</a></li>  <li class="file"><a href="/wiki/vue/migration/">Vue 1.x에서 마이그레이션</a></li>  <li class="file active"><a href="/wiki/vue/migration-vue-router/">Vue Router 0.7.x으로 부터 마이그레이션</a></li>  <li class="file"><a href="/wiki/vue/migration-vuex/">Vuex 0.6.x에서 1.0로 마이그레이션</a></li>  <li class="file"><a href="/wiki/vue/team/">팀 구성원 만나기</a></li>  <li class="file"><a href="/wiki/vue/join/">Vue.js 커뮤니티에 참여하세요!</a></li>  <li class="file"><a href="/wiki/vue/components-dynamic-async/">동적 & 비동기 컴포넌트</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/vuex/intro/">Vuex가 무엇인가요?</a></li>  <li class="file"><a href="/wiki/vuex/getting-started/">시작하기</a></li>  <li class="file"><a href="/wiki/vuex/hot-reload/">핫 리로딩</a></li>  <li class="file"><a href="/wiki/vuex/installation/">설치</a></li>  <li class="file"><a href="/wiki/vuex/modules/">모듈</a></li>  <li class="file"><a href="/wiki/vuex/mutations/">변이</a></li>  <li class="file"><a href="/wiki/vuex/getters/">Getters</a></li>  <li class="file"><a href="/wiki/vuex/api/">API 레퍼런스</a></li>  <li class="file"><a href="/wiki/vuex/actions/">액션</a></li>  <li class="file"><a href="/wiki/vuex/forms/">폼 핸들링</a></li>  <li class="file"><a href="/wiki/vuex/plugins/">플러그인</a></li>  <li class="file"><a href="/wiki/vuex/state/">상태</a></li>  <li class="file"><a href="/wiki/vuex/strict/">Strict 모드</a></li>  <li class="file"><a href="/wiki/vuex/structure/">애플리케이션 구조</a></li>  <li class="file"><a href="/wiki/vuex/testing/">테스팅</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-vue/migration-vue-router" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/vue/migration-vue-router/">
+            <time datetime="2019-07-02T10:04:47.000Z" itemprop="datePublished">2019-07-02</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/vue/migration-vue-router.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/vue/migration-vue-router.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/vue/migration-vue-router.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Vue Router 0.7.x으로 부터 마이그레이션
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#라우터-초기화"><span class="toc-number">1.</span> <span class="toc-text">라우터 초기화</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#router-start-변경"><span class="toc-number">1.1.</span> <span class="toc-text">router.start 변경</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">1.1.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#라우터-정의"><span class="toc-number">2.</span> <span class="toc-text">라우터 정의</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#router-map-변경"><span class="toc-number">2.1.</span> <span class="toc-text">router.map 변경</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.1.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#router-on-제거됨"><span class="toc-number">2.2.</span> <span class="toc-text">router.on 제거됨</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.2.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#router-beforeEach-changed"><span class="toc-number">2.3.</span> <span class="toc-text">router.beforeEach changed</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#subRoutes-이름-변경"><span class="toc-number">2.4.</span> <span class="toc-text">subRoutes 이름 변경</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.4.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#router-redirect-변경"><span class="toc-number">2.5.</span> <span class="toc-text">router.redirect 변경</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.5.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#router-alias-변경"><span class="toc-number">2.6.</span> <span class="toc-text">router.alias 변경</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.6.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#임의-라우트-속성-변경"><span class="toc-number">2.7.</span> <span class="toc-text">임의 라우트 속성 변경</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">2.7.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#쿼리의-배열-구문-제거됨"><span class="toc-number">2.8.</span> <span class="toc-text">쿼리의 배열 구문 제거됨</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#라우트-매칭"><span class="toc-number">3.</span> <span class="toc-text">라우트 매칭</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#하나-이상의-이름을-가지는-인자-변경"><span class="toc-number">3.1.</span> <span class="toc-text">하나 이상의 이름을 가지는 인자 변경</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">3.1.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#링크"><span class="toc-number">4.</span> <span class="toc-text">링크</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v-link-변경"><span class="toc-number">4.1.</span> <span class="toc-text">v-link 변경</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">4.1.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-link-active-변경"><span class="toc-number">4.2.</span> <span class="toc-text">v-link-active 변경</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">4.2.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#프로그래밍-방식의-네비게이션"><span class="toc-number">5.</span> <span class="toc-text">프로그래밍 방식의 네비게이션</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#router-go-변경"><span class="toc-number">5.1.</span> <span class="toc-text">router.go 변경</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">5.1.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#라우터-옵션-모드"><span class="toc-number">6.</span> <span class="toc-text">라우터 옵션 : 모드</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hashbang-false-제거됨"><span class="toc-number">6.1.</span> <span class="toc-text">hashbang: false 제거됨</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">6.1.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#history-true-변경"><span class="toc-number">6.2.</span> <span class="toc-text">history: true 변경</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">6.2.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#abstract-true-변경"><span class="toc-number">6.3.</span> <span class="toc-text">abstract: true 변경</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">6.3.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Route-옵션-기타"><span class="toc-number">7.</span> <span class="toc-text">Route 옵션: 기타</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#saveScrollPosition-변경"><span class="toc-number">7.1.</span> <span class="toc-text">saveScrollPosition 변경</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">7.1.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#root-이름-변경"><span class="toc-number">7.2.</span> <span class="toc-text">root 이름 변경</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">7.2.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#transitionOnLoad-제거됨"><span class="toc-number">7.3.</span> <span class="toc-text">transitionOnLoad 제거됨</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">7.3.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#suppressTransitionError-제거됨"><span class="toc-number">7.4.</span> <span class="toc-text">suppressTransitionError 제거됨</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">7.4.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#라우트-훅"><span class="toc-number">8.</span> <span class="toc-text">라우트 훅</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#activate-변경"><span class="toc-number">8.1.</span> <span class="toc-text">activate 변경</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">8.1.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#canActivate-변경"><span class="toc-number">8.2.</span> <span class="toc-text">canActivate 변경</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">8.2.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deactivate-제거됨"><span class="toc-number">8.3.</span> <span class="toc-text">deactivate 제거됨</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">8.3.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#canDeactivate-대체됨"><span class="toc-number">8.4.</span> <span class="toc-text">canDeactivate 대체됨</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">8.4.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#canReuse-false-제거됨"><span class="toc-number">8.5.</span> <span class="toc-text">canReuse: false 제거됨</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">8.5.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#data-변경"><span class="toc-number">8.6.</span> <span class="toc-text">data 변경</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">8.6.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#loadingRouteData-제거됨"><span class="toc-number">8.7.</span> <span class="toc-text">$loadingRouteData 제거됨</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#null"><span class="toc-number">8.7.1.</span> <span class="toc-text">업그레이드 방법</span></a></li></ol></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <blockquote>
+<p>Vue 2는 Vue 2와 호환되므로 Vue를 업데이트하는 경우 Vue Router도 함께 업데이트해야합니다. 이것이 주요 문서에서 마이그레이션 경로에 대한 세부 정보를 포함시킨 이유입니다. 새 Vue Router 사용에 대한 전체 안내서는 <a href="http://router.vuejs.org/en/" target="_blank" rel="noopener">Vue Router 문서</a>를 참조하십시오.</p>
+</blockquote>
+<h2 id="라우터-초기화"><a href="#라우터-초기화" class="headerlink" title="라우터 초기화"></a>라우터 초기화</h2><h3 id="router-start-변경"><a href="#router-start-변경" class="headerlink" title="router.start 변경"></a><code>router.start</code> <sup>변경</sup></h3><p>Vue Router로 앱을 초기화하는 특별한 API는 더 이상 존재하지 않습니다. 그 대신에 다음을 의미합니다:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router.start(&#123;</span><br><span class="line">  template: <span class="string">'&lt;router-view&gt;&lt;/router-view&gt;'</span></span><br><span class="line">&#125;, <span class="string">'#app'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Vue 인스턴스에 라우터 속성 만 전달하면됩니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router: router,</span><br><span class="line">  template: <span class="string">'&lt;router-view&gt;&lt;/router-view&gt;'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>또는 Vue의 런타임 전용 빌드를 사용하는 경우</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  el: <span class="string">'#app'</span>,</span><br><span class="line">  router: router,</span><br><span class="line">  render: <span class="function"><span class="params">h</span> =&gt;</span> h(<span class="string">'router-view'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 호출되는 <code>router.start</code>의 예를 찾으십시오.</p>
+</div>
+
+
+<h2 id="라우터-정의"><a href="#라우터-정의" class="headerlink" title="라우터 정의"></a>라우터 정의</h2><h3 id="router-map-변경"><a href="#router-map-변경" class="headerlink" title="router.map 변경"></a><code>router.map</code> <sup>변경</sup></h3><p>이제 라우트는 라우터 인스턴스화시 <a href="http://router.vuejs.org/en/essentials/getting-started.html#javascript" target="_blank" rel="noopener"><code>routes</code> 옵션</a>에 배열로 정의됩니다. 따라서 예를 들어 이러한 라우트는 다음과 같습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">router.map(&#123;</span><br><span class="line">  <span class="string">'/foo'</span>: &#123;</span><br><span class="line">    component: Foo</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">'/bar'</span>: &#123;</span><br><span class="line">    component: Bar</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>대신 다음과 같이 정의됩니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">'/foo'</span>, <span class="attr">component</span>: Foo &#125;,</span><br><span class="line">    &#123; <span class="attr">path</span>: <span class="string">'/bar'</span>, <span class="attr">component</span>: Bar &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>객체를 반복 할 때 브라우저간에 같은 키 순서를 사용하는 것이 보장되지 않기 때문에 배열 구문을 사용하면보다 예측 가능한 경로 일치가 가능합니다.</p>
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>router.map</code>가 호출되는 의 예를 찾으십시오.</p>
+</div>
+
+
+<h3 id="router-on-제거됨"><a href="#router-on-제거됨" class="headerlink" title="router.on 제거됨"></a><code>router.on</code> <sup>제거됨</sup></h3><p>앱을 시작할 때 프로그래밍으로 경로를 생성해야하는 경우 라우터 정의를 동적으로 경로 배열에 푸시함으로써 수행 할 수 있습니다. 예 :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 기본 라우트</span></span><br><span class="line"><span class="keyword">var</span> routes = [</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 동적으로 생성한 라우트</span></span><br><span class="line">marketingPages.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">page</span>) </span>&#123;</span><br><span class="line">  routes.push(&#123;</span><br><span class="line">    path: <span class="string">'/marketing/'</span> + page.slug</span><br><span class="line">    component: &#123;</span><br><span class="line">      extends: MarketingComponent</span><br><span class="line">      data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> &#123; <span class="attr">page</span>: page &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> Router(&#123;</span><br><span class="line">  routes: routes</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>라우터가 인스턴스화 된 후에 새 경로를 추가해야하는 경우 추가하려는 경로가 포함 된 새 라우터로 라우터의 일치자(matcher)를 바꿀 수 있습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">router.match = createMatcher(</span><br><span class="line">  [&#123;</span><br><span class="line">    path: <span class="string">'/my/new/path'</span>,</span><br><span class="line">    component: MyComponent</span><br><span class="line">  &#125;].concat(router.options.routes)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>router.on</code>가 호출되는지 확인하십시오.</p>
+</div>
+
+
+<h3 id="router-beforeEach-changed"><a href="#router-beforeEach-changed" class="headerlink" title="router.beforeEach changed"></a><code>router.beforeEach</code> <sup>changed</sup></h3><p><code>router.beforeEach</code>는 이제 비동기적으로 작동하며 세번째 전달인자로 <code>next</code> 함수를 받습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach(<span class="function"><span class="keyword">function</span> (<span class="params">transition</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (transition.to.path === <span class="string">'/forbidden'</span>) &#123;</span><br><span class="line">    transition.abort()</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    transition.next()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach(<span class="function"><span class="keyword">function</span> (<span class="params">to, from, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (to.path === <span class="string">'/forbidden'</span>) &#123;</span><br><span class="line">    next(<span class="literal">false</span>)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    next()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="subRoutes-이름-변경"><a href="#subRoutes-이름-변경" class="headerlink" title="subRoutes 이름 변경"></a><code>subRoutes</code> <sup>이름 변경</sup></h3><p>Vue 및 다른 라우팅 라이브러리와의 일관성을 위해 <a href="http://router.vuejs.org/en/essentials/nested-routes.html" target="_blank" rel="noopener">자식으로 이름이 변경</a> 되었습니다.</p>
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>subRoutes</code> 옵션의 예를 찾으십시오.</p>
+</div>
+
+
+<h3 id="router-redirect-변경"><a href="#router-redirect-변경" class="headerlink" title="router.redirect 변경"></a><code>router.redirect</code> <sup>변경</sup></h3><p><a href="http://router.vuejs.org/en/essentials/redirect-and-alias.html" target="_blank" rel="noopener">경로 정의에 대한 옵션</a>입니다. 예를 들어 다음과 같이 업데이트 할 것입니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router.redirect(&#123;</span><br><span class="line">  <span class="string">'/tos'</span>: <span class="string">'/terms-of-service'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>routes</code> 설정에서 아래와 같은 정의로 바꿉니다:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  path: <span class="string">'/tos'</span>,</span><br><span class="line">  redirect: <span class="string">'/terms-of-service'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>router.redirect</code>가 호출되는지 확인하십시오.</p>
+</div>
+
+
+<h3 id="router-alias-변경"><a href="#router-alias-변경" class="headerlink" title="router.alias 변경"></a><code>router.alias</code> <sup>변경</sup></h3><p>별칭을 지정하려는 <a href="http://router.vuejs.org/en/essentials/redirect-and-alias.html" target="_blank" rel="noopener">경로 정의 옵션</a>입니다. 예를 들어 다음과 같이 업데이트 할 것입니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router.alias(&#123;</span><br><span class="line">  <span class="string">'/manage'</span>: <span class="string">'/admin'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>routes</code> 설정에서 아래와 같은 정의로 바꿉니다:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  path: <span class="string">'/admin'</span>,</span><br><span class="line">  component: AdminPanel,</span><br><span class="line">  alias: <span class="string">'/manage'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>여러 개의 별칭이 필요한 경우 배열 구문을 사용할 수도 있습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias: [<span class="string">'/manage'</span>, <span class="string">'/administer'</span>, <span class="string">'/administrate'</span>]</span><br></pre></td></tr></table></figure>
+
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>router.alias</code>가 호출되는지 확인하십시오.</p>
+</div>
+
+
+<h3 id="임의-라우트-속성-변경"><a href="#임의-라우트-속성-변경" class="headerlink" title="임의 라우트 속성 변경"></a>임의 라우트 속성 <sup>변경</sup></h3><p>미래의 기능과의 충돌을 피하기 위해 임의의 라우트 속성이 새 메타 속성 아래에서 범위가 지정되어야합니다. 예를 들어, 다음과 같이 정의했다면 :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'/admin'</span>: &#123;</span><br><span class="line">  component: AdminPanel,</span><br><span class="line">  requiresAuth: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>이제 다음과 같이 업데이트 할 것입니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  path: <span class="string">'/admin'</span>,</span><br><span class="line">  component: AdminPanel,</span><br><span class="line">  meta: &#123;</span><br><span class="line">    requiresAuth: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>그런 다음 경로에서 이 속성에 나중에 액세스하면 mata 예제를 계속 진행합니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (route.meta.requiresAuth) &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 메타에서 범위가 지정되지 않은 임의의 경로 속성의 예를 찾으십시오.</p>
+</div>
+
+
+<h3 id="쿼리의-배열-구문-제거됨"><a href="#쿼리의-배열-구문-제거됨" class="headerlink" title="쿼리의 배열 구문 제거됨"></a>쿼리의 배열 구문 <sup>제거됨</sup></h3><p>쿼리 전달인자로 배열을 전달할 때 QueryString 문법은 더 이상 <code>/foo?users[]=Tom&amp;users[]=Jerry</code>가 아닌 새로운 문법 <code>/foo?users=Tom&amp;users=Jerry</code> 입니다.<br>내부적으로,<code>$route.query.users</code>는 여전히 배열이 되지만, 이 경로에 직접 접근 할 때 <code>/foo?users=Tom</code> 쿼리에 단 하나의 전달인자가 있다면, 라우터는 <code>users</code>가 배열임을 기대합니다.<br>이 때문에 계산된 속성을 추가하여 <code>$route.query.users</code>의 모든 참조를 이 속성으로 대체하는 것을 고려해야합니다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  computed: &#123;</span><br><span class="line">    <span class="comment">// users는 항상 배열입니다</span></span><br><span class="line">    users () &#123;</span><br><span class="line">      <span class="keyword">const</span> users = <span class="keyword">this</span>.$route.query.users</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">Array</span>.isArray(users) ? users : [users]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="라우트-매칭"><a href="#라우트-매칭" class="headerlink" title="라우트 매칭"></a>라우트 매칭</h2><p>라우트 매칭은 이제 <a href="https://github.com/pillarjs/path-to-regexp" target="_blank" rel="noopener">path-to-regexp</a>를 사용해 이전보다 훨씬 유연합니다.</p>
+<h3 id="하나-이상의-이름을-가지는-인자-변경"><a href="#하나-이상의-이름을-가지는-인자-변경" class="headerlink" title="하나 이상의 이름을 가지는 인자 변경"></a>하나 이상의 이름을 가지는 인자 <sup>변경</sup></h3><p>구문이 약간 변경되었으므로, 예를 들어<code>/category/*tags</code> 는 <code>/category/:tags+</code> 로 업데이트 되어야 합니다.</p>
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 더 이상 사용되지 않는 경로 구문의 예를 찾으십시오.</p>
+</div>
+
+
+<h2 id="링크"><a href="#링크" class="headerlink" title="링크"></a>링크</h2><h3 id="v-link-변경"><a href="#v-link-변경" class="headerlink" title="v-link 변경"></a><code>v-link</code> <sup>변경</sup></h3><p><code>v-link</code> 디렉티브는 새로운<a href="http://router.vuejs.org/en/api/router-link.html" target="_blank" rel="noopener"><code>&lt;router-link&gt;</code> 컴포넌트</a>로 대체되었습니다.이 일은 이제 Vue 2의 컴포넌트의 책임입니다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span>=<span class="string">"'/about'"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>다음과 같이 업데이트해야합니다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/about"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>target=&quot;_blank&quot;</code> 는 <code>&lt;router-link&gt;</code> 에서 지원되지 않으므로 새 탭에서 링크를 열어야 할 경우 대신<code>&lt;a&gt;</code>를 사용해야합니다.</p>
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>v-link</code> 디렉티브의 예를 찾으십시오.</p>
+</div>
+
+
+<h3 id="v-link-active-변경"><a href="#v-link-active-변경" class="headerlink" title="v-link-active 변경"></a><code>v-link-active</code> <sup>변경</sup></h3><p><code>v-link-active</code> 디렉티브는 <a href="http://router.vuejs.org/en/api/router-link.html" target="_blank" rel="noopener"><code>&lt;router-link&gt;</code> 컴포넌트</a>의<code>tag</code> 속성으로 대체되었습니다. 예를 들어 다음과 같이 업데이트 할 것입니다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">li</span> <span class="attr">v-link-active</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">v-link</span>=<span class="string">"'/about'"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>이는 아래와 같이 변경 되었습니다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">tag</span>=<span class="string">"li"</span> <span class="attr">to</span>=<span class="string">"/about"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span>&gt;</span>About<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>&lt;a&gt;</code>는 실제 링크가 될 것이고 올바른 href를 얻을 것이다. 그러나 활성 클래스는 바깥 쪽<code>&lt;li&gt;</code>에 적용될 것이다.</p>
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>v-link-active</code> 디렉티브의 예를 찾으십시오.</p>
+</div>
+
+
+<h2 id="프로그래밍-방식의-네비게이션"><a href="#프로그래밍-방식의-네비게이션" class="headerlink" title="프로그래밍 방식의 네비게이션"></a>프로그래밍 방식의 네비게이션</h2><h3 id="router-go-변경"><a href="#router-go-변경" class="headerlink" title="router.go 변경"></a><code>router.go</code> <sup>변경</sup></h3><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API" target="_blank" rel="noopener">HTML5 History API</a>와의 일관성을 위해 <code>router.go</code>는 <a href="https://router.vuejs.org/en/essentials/navigation.html#routergon" target="_blank" rel="noopener">뒤로 / 앞으로 탐색</a>에만 사용되며 <a href="http://router.vuejs.org/en/essentials/navigation.html#routerpushlocation" target="_blank" rel="noopener"><code>router.push</code></a>는 특정 페이지로 이동하는 데 사용됩니다.</p>
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>router.go</code>를 사용하고 있고 <code>router.push</code>가 대신 사용되야 하는 예를 찾으십시오.</p>
+</div>
+
+
+<h2 id="라우터-옵션-모드"><a href="#라우터-옵션-모드" class="headerlink" title="라우터 옵션 : 모드"></a>라우터 옵션 : 모드</h2><h3 id="hashbang-false-제거됨"><a href="#hashbang-false-제거됨" class="headerlink" title="hashbang: false 제거됨"></a><code>hashbang: false</code> <sup>제거됨</sup></h3><p>Hashbang은 더 이상 Google이 URL을 크롤링하는 데 필요하지 않으므로 더 이상 해시 전략의 기본 (또는 옵션)이 아닙니다.</p>
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>hashbang: false</code> 옵션을 사용하는 예를 찾으십시오.</p>
+</div>
+
+
+<h3 id="history-true-변경"><a href="#history-true-변경" class="headerlink" title="history: true 변경"></a><code>history: true</code> <sup>변경</sup></h3><p>모든 라우팅 모드 옵션은 단일 <a href="http://router.vuejs.org/en/api/options.html#mode" target="_blank" rel="noopener">모드</a> 옵션으로 압축되었습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">  history: <span class="string">'true'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>위를 아래 코드로 변경합니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">  mode: <span class="string">'history'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>history: true</code> 옵션이 사용되는 예를 찾으십시오.</p>
+</div>
+
+
+<h3 id="abstract-true-변경"><a href="#abstract-true-변경" class="headerlink" title="abstract: true 변경"></a><code>abstract: true</code> <sup>변경</sup></h3><p>모든 라우팅 모드 옵션은 단일 <a href="http://router.vuejs.org/en/api/options.html#mode" target="_blank" rel="noopener"><code>mode</code> 옵션</a>으로 압축되었습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">  abstract: <span class="string">'true'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>위를 아래 코드로 변경합니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">  mode: <span class="string">'abstract'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>abstract: true</code> 옵션이 사용되는 예를 찾으십시오.</p>
+</div>
+
+
+<h2 id="Route-옵션-기타"><a href="#Route-옵션-기타" class="headerlink" title="Route 옵션: 기타"></a>Route 옵션: 기타</h2><h3 id="saveScrollPosition-변경"><a href="#saveScrollPosition-변경" class="headerlink" title="saveScrollPosition 변경"></a><code>saveScrollPosition</code> <sup>변경</sup></h3><p>이것은 함수를 받아들이는 <a href="http://router.vuejs.org/en/advanced/scroll-behavior.html" target="_blank" rel="noopener"><code>scrollBehavior</code> 옵션</a>으로 대체되었으므로 라우트마다 스크롤 동작을 완벽하게 사용자 정의 할 수 있습니다 . 이것은 많은 새로운 가능성을 열어 놓았지만 단순히 다음과 같은 예전의 행동을 그대로 재현할 수 있습니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">saveScrollPosition: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>위를 아래 코드로 변경합니다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scrollBehavior: <span class="function"><span class="keyword">function</span> (<span class="params">to, from, savedPosition</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> savedPosition || &#123; <span class="attr">x</span>: <span class="number">0</span>, <span class="attr">y</span>: <span class="number">0</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>saveScrollPosition: true</code> 옵션이 사용되는 예를 찾으십시오.</p>
+</div>
+
+
+<h3 id="root-이름-변경"><a href="#root-이름-변경" class="headerlink" title="root 이름 변경"></a><code>root</code> <sup>이름 변경</sup></h3><p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="_blank" rel="noopener">HTML<code>&lt;base&gt;</code> 엘리먼트</a>와의 일관성을 위해 <code>base</code>로 이름이 변경되었습니다.</p>
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>root</code> 옵션이 사용되는 예를 찾으십시오.</p>
+</div>
+
+
+<h3 id="transitionOnLoad-제거됨"><a href="#transitionOnLoad-제거됨" class="headerlink" title="transitionOnLoad 제거됨"></a><code>transitionOnLoad</code> <sup>제거됨</sup></h3><p>Vue의 트랜지션 시스템에 명시적인 <a href="transitions.html#Transitions-on-Initial-Render"><code>appear</code> 트랜지션 제어</a>가 추가되었으므로이 옵션은 더 이상 필요하지 않습니다.</p>
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>transitionOnLoad: true</code> 옵션이 사용되는 예를 찾으십시오.</p>
+</div>
+
+
+<h3 id="suppressTransitionError-제거됨"><a href="#suppressTransitionError-제거됨" class="headerlink" title="suppressTransitionError 제거됨"></a><code>suppressTransitionError</code> <sup>제거됨</sup></h3><p>훅 단순화로 인해 제거되었습니다. 정말로 트랜지션 오류를 억제해야한다면 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch" target="_blank" rel="noopener"><code>try</code>…<code>catch</code></a>를 사용할 수 있습니다. 대신.</p>
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>suppressTransitionError: true</code> 옵션이 사용되는 예를 찾으십시오.</p>
+</div>
+
+
+<h2 id="라우트-훅"><a href="#라우트-훅" class="headerlink" title="라우트 훅"></a>라우트 훅</h2><h3 id="activate-변경"><a href="#activate-변경" class="headerlink" title="activate 변경"></a><code>activate</code> <sup>변경</sup></h3><p>대신 컴포넌트에서 <a href="http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards" target="_blank" rel="noopener"><code>beforeRouteEnter</code></a>를 사용하십시오.</p>
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>beforeRouteEnter</code> 훅이 사용되는 예를 찾으십시오.</p>
+</div>
+
+
+<h3 id="canActivate-변경"><a href="#canActivate-변경" class="headerlink" title="canActivate 변경"></a><code>canActivate</code> <sup>변경</sup></h3><p>라우터에서 <a href="http://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard" target="_blank" rel="noopener"><code>beforeEnter</code></a>을 대신 사용하십시오.</p>
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>canActivate</code> 훅이 사용되는 예를 찾으십시오.</p>
+</div>
+
+
+<h3 id="deactivate-제거됨"><a href="#deactivate-제거됨" class="headerlink" title="deactivate 제거됨"></a><code>deactivate</code> <sup>제거됨</sup></h3><p>컴포넌트의 <a href="../api/#beforeDestroy"><code>beforeDestroy</code></a> 또는 <a href="../api/#destroyed"><code>destroyed</code></a> 훅을 대신 사용하십시오.</p>
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>deactivate</code> 훅이 사용되는 예를 찾으십시오.</p>
+</div>
+
+
+<h3 id="canDeactivate-대체됨"><a href="#canDeactivate-대체됨" class="headerlink" title="canDeactivate 대체됨"></a><code>canDeactivate</code> <sup>대체됨</sup></h3><p>컴포넌트의 <a href="http://router.vuejs.org/en/advanced/navigation-guards.html#incomponent-guards" target="_blank" rel="noopener"><code>beforeRouteLeave</code></a>을 대신 사용하십시오.</p>
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>canDeactivate</code> 훅이 사용되는 예를 찾으십시오.</p>
+</div>
+
+
+<h3 id="canReuse-false-제거됨"><a href="#canReuse-false-제거됨" class="headerlink" title="canReuse: false 제거됨"></a><code>canReuse: false</code> <sup>제거됨</sup></h3><p>새로운 Vue Router에는 더 이상 유스 케이스가 없습니다.</p>
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>canReuse: false</code> 옵션이 사용되는 예를 찾으십시오.</p>
+</div>
+
+
+<h3 id="data-변경"><a href="#data-변경" class="headerlink" title="data 변경"></a><code>data</code> <sup>변경</sup></h3><p>이제 <code>$route</code> 속성은 반응적입니다. 따라서 감시자를 사용하여 다음과 같이 경로 변경에 반응할 수 있습니다 :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">watch: &#123;</span><br><span class="line">  <span class="string">'$route'</span>: <span class="string">'fetchData'</span></span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">  fetchData: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>data</code> 훅이 사용되는 예를 찾으십시오.</p>
+</div>
+
+
+<h3 id="loadingRouteData-제거됨"><a href="#loadingRouteData-제거됨" class="headerlink" title="$loadingRouteData 제거됨"></a><code>$loadingRouteData</code> <sup>제거됨</sup></h3><p>자신의 속성 (예 : <code>isLoading</code>)을 정의한 다음 경로의 감시자에서 로드 상태를 업데이트합니다. 예를 들어, <a href="https://github.com/mzabriskie/axios" target="_blank" rel="noopener">axios</a>로 데이터를 가져 오는 경우 :</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">data: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    posts: [],</span><br><span class="line">    isLoading: <span class="literal">false</span>,</span><br><span class="line">    fetchError: <span class="literal">null</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">watch: &#123;</span><br><span class="line">  <span class="string">'$route'</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span></span><br><span class="line">    self.isLoading = <span class="literal">true</span></span><br><span class="line">    self.fetchData().then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      self.isLoading = <span class="literal">false</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">  fetchData: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span></span><br><span class="line">    <span class="keyword">return</span> axios.get(<span class="string">'/api/posts'</span>)</span><br><span class="line">      .then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">        self.posts = response.data.posts</span><br><span class="line">      &#125;)</span><br><span class="line">      .catch(<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</span><br><span class="line">        self.fetchError = error</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<div class="upgrade-path">
+  <h4>업그레이드 방법</h4>
+  <p>코드베이스에서 <a href="https://github.com/vuejs/vue-migration-helper" target="_blank" rel="noopener">마이그레이션 도우미</a>를 실행하여 <code>$loadingRouteData</code> 메타 속성이 사용되는 예를 찾으십시오.</p>
+</div>
+
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/vue/migration-vuex/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    Vuex 0.6.x에서 1.0로 마이그레이션
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/vue/migration/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">Vue 1.x에서 마이그레이션</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="typescript-study/typescript-study.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2020 
+            <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
